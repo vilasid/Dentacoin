@@ -26,6 +26,7 @@ contract token is owned {
     uint8 public decimals;
     uint256 public buyPrice;
     uint256 public minBalanceForAccounts;
+    uint256 public ethAmount
 
 
     /* This creates an array with all balances */
@@ -111,6 +112,7 @@ contract token is owned {
 
     /* This unnamed function is called whenever someone tries to send ether to it */
     function () {
-      //  if (msg.sender != owner) throw;     // Prevents accidental sending of ether
+      if (msg.sender != owner) throw;     // Prevents accidental sending of ether
+      ethAmount = msg.value;
     }
 }
