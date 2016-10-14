@@ -85,7 +85,7 @@ contract token is owned {
     }
     
     function sell() {
-    
+        if (sellPrice == 0) throw;
     }
 
 
