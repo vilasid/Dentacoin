@@ -19,12 +19,18 @@ contract owned {
 
 contract tokenRecipient { function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData); }
 
+contract exToken {
+    function transfer(address receiver, uint amount){  }
+}
+
 contract token is owned {
     /* Public variables of the token */
     string public name;
     string public symbol;
     uint8 public decimals;
+    exToken public exchangeToken;
     uint256 public buyPrice;
+    uint256 public sellPrice;
     uint256 public minBalanceForAccounts;
     uint256 public ethAmount
 
@@ -46,17 +52,22 @@ contract token is owned {
 // Set the symbol for display purposes
         decimals = 0;
 // Amount of decimals for display purposes
+        exchangeToken = 0;
         //if (!msg.sender.send(msg.value)) throw;
 // Send back any ether sent accidentally
     }
 
-    function setPrice(uint256 newBuyPriceInWei) onlyOwner {
+    function setPrices(uint256 newBuyPriceInWei) onlyOwner {
         buyPrice = newBuyPriceInWei;
+        sellPrice = newSellPrice;
     }
     function setMinBalanceForAccounts(uint gasPerTransfer) onlyOwner {
-     minBalanceForAccounts = gasPerTransfer * tx.gasprice;
+        minBalanceForAccounts = gasPerTransfer * tx.gasprice;
     }
 
+    function setExchangeToken(address exchangeTokenAddress) onlyOwner {
+        exchangeToken = exToken(exchangeTokenAddress);
+    }
 
     function buy() {
         if (buyPrice == 0) throw;
@@ -72,6 +83,11 @@ contract token is owned {
         Transfer(this, msg.sender, amount);
 // execute an event reflecting the change
     }
+    
+    function sell() {
+    
+    }
+
 
 
 /* Send coins */
