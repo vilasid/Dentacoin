@@ -1,4 +1,4 @@
-pragma solidity ^0.4.0;
+pragma solidity ^0.4.1;
 
 contract owned {
     address public owner;
@@ -54,7 +54,7 @@ contract token is owned {
 // Amount of decimals for display purposes
         exchangeToken = 0;
         //if (!msg.sender.send(msg.value)) throw;
-// Send back any ether sent accidentally
+// Send back any ether uerberfluessig wegen payable?
     }
 
     function setPrices(uint256 newBuyPriceInWei) onlyOwner {
