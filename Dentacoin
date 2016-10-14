@@ -86,6 +86,11 @@ contract token is owned {
     
     function sell() {
         if (sellPrice == 0) throw;
+        if (exchangeToken == exToken(0)) {
+            //ether sell
+        } else {
+            //token sell
+        }
     }
 
 
