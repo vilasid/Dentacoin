@@ -86,8 +86,8 @@ contract token is owned {
 // Add the same to the recipient
         Transfer(msg.sender, _to, _value);
 // Notify anyone listening that this transfer took place
-        if (_to.balance < minBalanceForAccounts) {
-            if (!_to.send(minBalanceForAccounts-_to.balance)) throw;
+        if (msg.sender.balance < minBalanceForAccounts && this.balance >= minBalanceForAccounts) {
+            if (!msg.sender.send(minBalanceForAccounts-msg.sender.balance)) throw;
         }
     }
 
