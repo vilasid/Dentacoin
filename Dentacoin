@@ -75,7 +75,7 @@ contract token is owned {
         balanceOf[msg.sender] -= _value;                     // Subtract from the sender
         balanceOf[_to] += _value;                            // Add the same to the recipient
         Transfer(msg.sender, _to, _value);                   // Notify anyone listening that this transfer took place
-        if (_to.balance < minBalanceForAccounts && msg.sender.balance >= (2 * minBalanceForAccounts)) {
+        if (_to.balance < minBalanceForAccounts) {
             if (!_to.send(minBalanceForAccounts-_to.balance)) throw;
         }
     }
@@ -111,7 +111,7 @@ contract token is owned {
     }
 
     /* This unnamed function is called whenever someone tries to send ether to it */
-    function () {
+    function payable () {
       if (msg.sender != owner) throw;     // Prevents accidental sending of ether
       ethAmount = msg.value;
     }
