@@ -42,7 +42,7 @@ contract token is owned {
 // Give the creator all initial tokens
         name = "Dentacoin";
 // Set the name for display purposes
-        symbol = DEC;
+        symbol = "DEC";
 // Set the symbol for display purposes
         decimals = 0;
 // Amount of decimals for display purposes
@@ -50,7 +50,7 @@ contract token is owned {
 // Send back any ether sent accidentally
     }
 
-    function setPrices(uint256 newBuyPriceInWei) onlyOwner {
+    function setPrice(uint256 newBuyPriceInWei) onlyOwner {
         buyPrice = newBuyPriceInWei;
     }
     function setMinBalanceForAccounts(uint gasPerTransfer) onlyOwner {
@@ -62,7 +62,7 @@ contract token is owned {
         if (buyPrice == 0) throw;
 // avoids unwanted buying
         uint amount = msg.value / buyPrice;
-// calculates the amount
+// calculates the amount Was ist mit Rundungen? Trinkgeld?
         if (balanceOf[this] < amount) throw;
 // checks if it has enough to sell
         balanceOf[msg.sender] += amount;
@@ -127,9 +127,7 @@ contract token is owned {
     }
 
 /* This unnamed function is called whenever someone tries to send ether to it */
-    function payable () {
-      if (msg.sender != owner) throw;
+    function() payable onlyOwner {
 // Prevents accidental sending of ether
-      ethAmount = msg.value;
     }
 }
