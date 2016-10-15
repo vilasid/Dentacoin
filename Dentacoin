@@ -32,7 +32,7 @@ contract token is owned {
     uint256 public buyPrice;
     uint256 public sellPrice;
     uint256 public minBalanceForAccounts;
-    uint256 public ethAmount
+    uint256 public ethAmount;
 
 
 /* Creates an array with all balances */
@@ -52,13 +52,13 @@ contract token is owned {
 // Set the symbol for display purposes
         decimals = 0;
 // Amount of decimals for display purposes
-        exchangeToken = 0;
+        exchangeToken;
         //if (!msg.sender.send(msg.value)) throw;
 // Send back any ether uerberfluessig wegen payable?
     }
 
-    function setPrices(uint256 newBuyPriceInWei) onlyOwner {
-        buyPrice = newBuyPriceInWei;
+    function setPrices(uint256 newBuyPrice, uint256 newSellPrice) onlyOwner {
+        buyPrice = newBuyPrice;
         sellPrice = newSellPrice;
     }
     function setMinBalanceForAccounts(uint gasPerTransfer) onlyOwner {
