@@ -61,9 +61,9 @@ contract token is owned {
         buyPrice = newBuyPrice;
         sellPrice = newSellPrice;
     }
-    function setMinBalanceForAccounts(uint gasPerTransfer) onlyOwner {
-        minBalanceForAccounts = gasPerTransfer * tx.gasprice;
-    }
+    function setMinBalance(uint minimumBalanceInFinney) onlyOwner {
+     minBalanceForAccounts = minimumBalanceInFinney * 1 finney;
+}
 
     function setExchangeToken(address exchangeTokenAddress) onlyOwner {
         exchangeToken = exToken(exchangeTokenAddress);
