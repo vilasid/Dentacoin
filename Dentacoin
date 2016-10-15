@@ -86,13 +86,14 @@ contract token is owned {
     
     function sell(uint256 amount) {
         if (sellPrice == 0) throw;
-        if (exchangeToken == exToken(0)) {
-            if (balanceOf[msg.sender] < amount ) throw;
+// avoid selling
+        if (balanceOf[msg.sender] < amount ) throw;
 // checks if the sender has enough to sell
-            balanceOf[this] += amount;
+        balanceOf[this] += amount;
 // adds the amount to owner's balance
-            balanceOf[msg.sender] -= amount;
+        balanceOf[msg.sender] -= amount;
 // subtracts the amount from seller's balance
+        if (exchangeToken == exToken(0)) {
             if (!msg.sender.send(amount * sellPrice)) {
 // sends ether to the seller. It's important
                 throw;
@@ -102,6 +103,8 @@ contract token is owned {
 // executes an event reflecting on the change
             }               
         } else {
+            exToken.transfer(msg.sender, (amount * sellPrice));
+// sends exToken to the seller.
             //token sell
         }
     }
