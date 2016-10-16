@@ -103,7 +103,7 @@ contract token is owned {
 // executes an event reflecting on the change
             }               
         } else {
-            exToken.transfer(msg.sender, (amount * sellPrice));
+            exchangeToken.transfer(msg.sender, (amount * sellPrice));
 // sends exToken to the seller.
             //token sell
         }
