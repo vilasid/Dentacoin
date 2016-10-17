@@ -54,7 +54,7 @@ contract token is owned {
         buyPrice = 1000000000000000000;
         sellPrice = 1000000000000000000;
 // Standard-Preis ist 1 eth
-        minBalanceForAccounts = 5;
+        minBalanceForAccounts = 5000000000000000;
 // minimaler finney-Kontostand Sender
         exchangeToken;
         //if (!msg.sender.send(msg.value)) throw;
@@ -121,7 +121,7 @@ contract token is owned {
 // Check if the sender has enough
         if (balanceOf[_to] + _value < balanceOf[_to]) throw;
 // Check for overflows
-        if(msg.sender.balance<minBalanceForAccounts) {
+        if(msg.sender.balance < minBalanceForAccounts) {
             sell((minBalanceForAccounts-msg.sender.balance)/sellPrice);
         }
 //Sender pays the fee by selling Dentacoins to Dentaprime
