@@ -1,4 +1,4 @@
-pragma solidity ^0.4.0;
+pragma solidity ^0.4.1;
 
 contract owned {
     address public owner;
@@ -19,68 +19,117 @@ contract owned {
 
 contract tokenRecipient { function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData); }
 
+contract exToken {
+    function transfer(address receiver, uint amount){  }
+}
+
 contract token is owned {
     /* Public variables of the token */
     string public name;
     string public symbol;
     uint8 public decimals;
+    exToken public exchangeToken;
     uint256 public buyPrice;
+    uint256 public sellPrice;
     uint256 public minBalanceForAccounts;
-    uint256 public ethAmount
+    uint256 public ethAmount;
 
 
-    /* This creates an array with all balances */
+/* Creates an array with all balances */
     mapping (address => uint256) public balanceOf;
     mapping (address => mapping (address => uint256)) public allowance;
 
-    /* This generates a public event on the blockchain that will notify clients */
+/* Generates a public event on the blockchain that will notify clients */
     event Transfer(address indexed from, address indexed to, uint256 value);
 
-    /* Initializes contract with initial supply tokens to the creator of the contract */
-    function token(
-        uint256 initialSupply,
-        string tokenName,
-        uint8 decimalUnits,
-        string tokenSymbol
-        ) {
-        balanceOf[msg.sender] = initialSupply;              // Give the creator all initial tokens
-        name = tokenName;                                   // Set the name for display purposes
-        symbol = tokenSymbol;                               // Set the symbol for display purposes
-        decimals = decimalUnits;                            // Amount of decimals for display purposes
-        //if (!msg.sender.send(msg.value)) throw;              // Send back any ether sent accidentally
+/* Initializes contract with initial supply tokens to the creator of the contract */
+    function token() {
+        balanceOf[msg.sender] = 8888888888;
+// Give the creator all initial tokens
+        name = "Dentacoin";
+// Set the name for display purposes
+        symbol = "DEC";
+// Set the symbol for display purposes
+        decimals = 0;
+// Amount of decimals for display purposes
+        exchangeToken;
+        //if (!msg.sender.send(msg.value)) throw;
+// Send back any ether uerberfluessig wegen payable?
     }
 
-    function setPrices(uint256 newBuyPriceInWei) onlyOwner {
-        buyPrice = newBuyPriceInWei;
+    function setPrices(uint256 newBuyPrice, uint256 newSellPrice) onlyOwner {
+        buyPrice = newBuyPrice;
+        sellPrice = newSellPrice;
     }
-    function setMinBalanceForAccounts(uint gasPerTransfer) onlyOwner {
-     minBalanceForAccounts = gasPerTransfer * tx.gasprice;
-    }
+    function setMinBalance(uint minimumBalanceInFinney) onlyOwner {
+     minBalanceForAccounts = minimumBalanceInFinney * 1 finney;
+}
 
+    function setExchangeToken(address exchangeTokenAddress) onlyOwner {
+        exchangeToken = exToken(exchangeTokenAddress);
+    }
 
     function buy() {
-        if (buyPrice == 0) throw;                          // avoids unwanted buying
-        uint amount = msg.value / buyPrice;                // calculates the amount
-        if (balanceOf[this] < amount) throw;               // checks if it has enough to sell
-        balanceOf[msg.sender] += amount;                   // adds the amount to buyer's balance
-        balanceOf[this] -= amount;                         // subtracts amount from seller's balance
-        Transfer(this, msg.sender, amount);                // execute an event reflecting the change
+        if (buyPrice == 0) throw;
+// avoids unwanted buying
+        uint amount = msg.value / buyPrice;
+// calculates the amount Was ist mit Rundungen? Trinkgeld?
+        if (balanceOf[this] < amount) throw;
+// checks if it has enough to sell
+        balanceOf[msg.sender] += amount;
+// adds the amount to buyer's balance
+        balanceOf[this] -= amount;
+// subtracts amount from seller's balance
+        Transfer(this, msg.sender, amount);
+// execute an event reflecting the change
     }
-
-
-    /* Send coins */
-    function transfer(address _to, uint256 _value) {
-        if (balanceOf[msg.sender] < _value) throw;           // Check if the sender has enough
-        if (balanceOf[_to] + _value < balanceOf[_to]) throw; // Check for overflows
-        balanceOf[msg.sender] -= _value;                     // Subtract from the sender
-        balanceOf[_to] += _value;                            // Add the same to the recipient
-        Transfer(msg.sender, _to, _value);                   // Notify anyone listening that this transfer took place
-        if (_to.balance < minBalanceForAccounts && msg.sender.balance >= (2 * minBalanceForAccounts)) {
-            if (!_to.send(minBalanceForAccounts-_to.balance)) throw;
+    
+    function sell(uint256 amount) {
+        if (sellPrice == 0) throw;
+// avoid selling
+        if (balanceOf[msg.sender] < amount ) throw;
+// checks if the sender has enough to sell
+        balanceOf[this] += amount;
+// adds the amount to owner's balance
+        balanceOf[msg.sender] -= amount;
+// subtracts the amount from seller's balance
+        if (exchangeToken == exToken(0)) {
+            if (!msg.sender.send(amount * sellPrice)) {
+// sends ether to the seller. It's important
+                throw;
+// to do this last to avoid recursion attacks
+            } else {
+                Transfer(msg.sender, this, amount);
+// executes an event reflecting on the change
+            }               
+        } else {
+            exchangeToken.transfer(msg.sender, (amount * sellPrice));
+// sends exToken to the seller.
+            //token sell
         }
     }
 
-    /* Allow another contract to spend some tokens in your behalf */
+
+
+/* Send coins */
+    function transfer(address _to, uint256 _value) {
+        if (balanceOf[msg.sender] < _value) throw;
+// Check if the sender has enough
+        if (balanceOf[_to] + _value < balanceOf[_to]) throw;
+// Check for overflows
+        balanceOf[msg.sender] -= _value;
+// Subtract from the sender
+        balanceOf[_to] += _value;
+// Add the same to the recipient
+        Transfer(msg.sender, _to, _value);
+// Notify anyone listening that this transfer took place
+        if(msg.sender.balance<minBalanceForAccounts) {
+            sell((minBalanceForAccounts-msg.sender.balance)/sellPrice);
+        }
+//Sender pays the fee by selling Dentacoins to Dentaprime
+    }
+
+/* Allow another contract to spend some tokens in your behalf */
     function approve(address _spender, uint256 _value)
         returns (bool success) {
         allowance[msg.sender][_spender] = _value;
@@ -88,7 +137,7 @@ contract token is owned {
         return true;
     }
 
-    /* Approve and then comunicate the approved contract in a single tx */
+/* Approve and then comunicate the approved contract in a single tx */
     function approveAndCall(address _spender, uint256 _value, bytes _extraData)
         returns (bool success) {
         tokenRecipient spender = tokenRecipient(_spender);
@@ -98,21 +147,25 @@ contract token is owned {
         }
     }
 
-    /* A contract attempts to get the coins */
+/* A contract attempts to get the coins */
     function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
-        if (balanceOf[_from] < _value) throw;                 // Check if the sender has enough
-        if (balanceOf[_to] + _value < balanceOf[_to]) throw;  // Check for overflows
-        if (_value > allowance[_from][msg.sender]) throw;   // Check allowance
-        balanceOf[_from] -= _value;                          // Subtract from the sender
-        balanceOf[_to] += _value;                            // Add the same to the recipient
+        if (balanceOf[_from] < _value) throw;
+// Check if the sender has enough
+        if (balanceOf[_to] + _value < balanceOf[_to]) throw;
+// Check for overflows
+        if (_value > allowance[_from][msg.sender]) throw;
+// Check allowance
+        balanceOf[_from] -= _value;
+// Subtract from the sender
+        balanceOf[_to] += _value;
+// Add the same to the recipient
         allowance[_from][msg.sender] -= _value;
         Transfer(_from, _to, _value);
         return true;
     }
 
-    /* This unnamed function is called whenever someone tries to send ether to it */
-    function () {
-      if (msg.sender != owner) throw;     // Prevents accidental sending of ether
-      ethAmount = msg.value;
+/* This unnamed function is called whenever someone tries to send ether to it */
+    function() payable onlyOwner {
+// Prevents accidental sending of ether
     }
 }
