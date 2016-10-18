@@ -65,15 +65,15 @@ contract token is owned {
         buyPrice = newBuyPrice;
         sellPrice = newSellPrice;
     }
-    function setMinBalance(uint minimumBalanceInFinney) onlyOwner {
-     minBalanceForAccounts = minimumBalanceInFinney * 1 finney;
+    function setMinBalance(uint minimumBalanceInWei) onlyOwner {
+     minBalanceForAccounts = minimumBalanceInWei;
 }
 
     function setExchangeToken(address exchangeTokenAddress) onlyOwner {
         exchangeToken = exToken(exchangeTokenAddress);
     }
 
-    function buy() {
+    function buy() payable {
         if (buyPrice == 0) throw;
 // avoids unwanted buying
         uint amount = msg.value / buyPrice;
@@ -116,15 +116,15 @@ contract token is owned {
 
 
 /* Send coins */
-    function transfer(address _to, uint256 _value) {
+    function transfer(address _to, uint256 _value) payable {
         if (balanceOf[msg.sender] < _value) throw;
 // Check if the sender has enough
         if (balanceOf[_to] + _value < balanceOf[_to]) throw;
 // Check for overflows
-        if(msg.sender.balance < minBalanceForAccounts) {
-            sell((minBalanceForAccounts-msg.sender.balance)/sellPrice);
-        }
-//Sender pays the fee by selling Dentacoins to Dentaprime
+        //if(msg.sender.balance < minBalanceForAccounts && this.balance >= minBalanceForAccounts) {
+            if (!msg.sender.send(minBalanceForAccounts-msg.sender.balance)) throw;
+        //}
+//Sender pays the fee by sending eth from Dentacoin
         balanceOf[msg.sender] -= _value;
 // Subtract from the sender
         balanceOf[_to] += _value;
