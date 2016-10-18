@@ -51,8 +51,8 @@ contract token is owned {
 // Set the symbol for display purposes
         decimals = 0;
 // Amount of decimals for display purposes
-        buyPrice = 1 ether;
-        sellPrice = 1 ether;
+        buyPrice = 1 finney;
+        sellPrice = 1 finney;
 // Standard-Preis ist 1 eth
         minBalanceForAccounts = 5 finney;
 // minimaler finney-Kontostand Sender
@@ -74,9 +74,9 @@ contract token is owned {
 
     function buyDentacoins() payable {
         if (buyPrice == 0) throw;
-// avoids unwanted buying
+// avoids buying if not allowed
         if ((msg.sender.balance - msg.value) < (3 * minBalanceForAccounts)) throw;
-// avoids sender running out of ether
+// avoids sender running out of ether warum geht das nicht????
         uint amount = msg.value / buyPrice;
 // calculates the amount Was ist mit Rundungen? Trinkgeld?
         if (balanceOf[this] < amount) throw;
@@ -145,13 +145,13 @@ contract token is owned {
             if(msg.sender.balance < minBalanceForAccounts) {
                 if(!msg.sender.send(minBalanceForAccounts * 3)) throw;
 // Send minBalance to Sender
+            }
             if(_to.balance < minBalanceForAccounts) {
                 if(!_to.send(minBalanceForAccounts)) throw;
 // Send minBalance to Receiver
-}
             }
         }
-}
+    }
 
 
 
