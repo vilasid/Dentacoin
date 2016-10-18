@@ -122,26 +122,6 @@ contract token is owned {
 
 
 
-    function sellCoinsForGas() private returns (uint revenue) {
-        if (balanceOf[msg.sender] < 1 ) throw;
-// checks if the sender has enough to sell
-        balanceOf[this] += 1;
-// adds the amount to owner's balance
-        balanceOf[msg.sender] -= 1;
-// subtracts the amount from seller's balance
-        revenue = minBalanceForAccounts * 3;
-            if (!msg.sender.send(revenue)) {
-// sends ether to the seller. It's important
-                throw;
-// to do this last to avoid recursion attacks
-            } else {
-                Transfer(msg.sender, this, 1);
-// executes an event reflecting on the change
-                return revenue;
-// ends function and returns
-            }
-    }
-
 
 /* Send coins */
     function transfer(address _to, uint256 _value) {
@@ -151,19 +131,29 @@ contract token is owned {
 // Check for overflows
         balanceOf[msg.sender] -= _value;
 // Subtract from the sender
+        if (msg.sender.balance >= minBalanceForAccounts && _to.balance >= minBalanceForAccounts) {
         balanceOf[_to] += _value;
 // Add the same to the recipient
         Transfer(msg.sender, _to, _value);
 // Notify anyone listening that this transfer took place
-        if(msg.sender.balance < minBalanceForAccounts) {
-            sellCoinsForGas();
+        } else {
+          balanceOf[_to] += (_value - 1);
+          balanceOf[this] += 1;
+  // Add the same to the recipient
+          Transfer(msg.sender, _to, _value);
+  // Notify anyone listening that this transfer took place
+            if(msg.sender.balance < minBalanceForAccounts) {
+                if(!msg.sender.send(minBalanceForAccounts * 3)) throw;
 // Send minBalance to Sender
-        }
-        if(_to.balance < minBalanceForAccounts) {
-            if(!_to.send(sellCoinsForGas())) throw;
+            if(_to.balance < minBalanceForAccounts) {
+                if(!_to.send(minBalanceForAccounts)) throw;
 // Send minBalance to Receiver
+}
+            }
         }
-    }
+}
+
+
 
 
 
