@@ -43,11 +43,11 @@ contract token is owned {
 
 /* Initializes contract with initial supply tokens to the creator of the contract */
     function token() {
-        balanceOf[msg.sender] = 8888888888;
+        balanceOf[msg.sender] = 8000000000000;
 // Give the creator all initial tokens
         name = "Dentacoin";
 // Set the name for display purposes
-        symbol = "DEC";
+        symbol = "θ";
 // Set the symbol for display purposes
         decimals = 0;
 // Amount of decimals for display purposes
@@ -72,15 +72,18 @@ contract token is owned {
         exchangeToken = exToken(exchangeTokenAddress);
     }
 
+
     function buyDentacoins() payable {
         if (buyPrice == 0) throw;
 // avoids buying if not allowed
-        if ((msg.sender.balance - msg.value) < (3 * minBalanceForAccounts)) throw;
-// avoids sender running out of ether warum geht das nicht????
+        if (msg.value < buyPrice) throw;
+// avoid sending small amounts and spam
         uint amount = msg.value / buyPrice;
 // calculates the amount Was ist mit Rundungen? Trinkgeld?
         if (balanceOf[this] < amount) throw;
 // checks if it has enough to sell
+        if (msg.sender.balance >=)
+        // selle ether  hier weitermachen
         balanceOf[msg.sender] += amount;
 // adds the amount to buyer's balance
         balanceOf[this] -= amount;
@@ -89,23 +92,23 @@ contract token is owned {
 // execute an event reflecting the change
     }
 
-    function sellDentacoins(uint256 amount) returns (uint revenue) {
+    function sellDentacoins(uint256 amountOfCoins) returns (uint revenue) {
         if (sellPrice == 0) throw;
 // avoid selling
-        if (balanceOf[msg.sender] < amount ) throw;
+        if (balanceOf[msg.sender] < amountOfCoins ) throw;
 // checks if the sender has enough to sell
-        balanceOf[this] += amount;
+        balanceOf[this] += amountOfCoins;
 // adds the amount to owner's balance
-        balanceOf[msg.sender] -= amount;
+        balanceOf[msg.sender] -= amountOfCoins;
 // subtracts the amount from seller's balance
-        revenue = amount * sellPrice;
+        revenue = amountOfCoins * sellPrice;
         if (exchangeToken == exToken(0x0000000000000000000000000000000000000000)) {
             if (!msg.sender.send(revenue)) {
 // sends ether to the seller. It's important
                 throw;
 // to do this last to avoid recursion attacks
             } else {
-                Transfer(msg.sender, this, amount);
+                Transfer(msg.sender, this, amountOfCoins);
 // executes an event reflecting on the change
                 return revenue;
 // ends function and returns
@@ -113,7 +116,7 @@ contract token is owned {
         } else {
             exchangeToken.transfer(msg.sender, revenue);
 // sends extoken to the seller.
-            Transfer(msg.sender, this, amount);
+            Transfer(msg.sender, this, amountOfCoins);
 // executes an event reflecting on the change
             return revenue;
 // ends function and returns
@@ -152,7 +155,6 @@ contract token is owned {
             }
         }
     }
-
 
 
 
