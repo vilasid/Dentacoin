@@ -21,6 +21,7 @@ contract tokenRecipient { function receiveApproval(address _from, uint256 _value
 
 contract exToken {
     function transfer(address receiver, uint amount){  }
+    mapping (address => uint256) public balanceOf;
 }
 
 contract token is owned {
@@ -72,18 +73,23 @@ contract token is owned {
         exchangeToken = exToken(exchangeTokenAddress);
     }
 
-
     function buyDentacoins() payable {
         if (buyPrice == 0) throw;
 // avoids buying if not allowed
-        if (msg.value < buyPrice) throw;
+        uint amount;
+        if (exchangeToken == exToken(0x0000000000000000000000000000000000000000)) {
+            if (msg.value < buyPrice) throw;
 // avoid sending small amounts and spam
-        uint amount = msg.value / buyPrice;
+            amount = msg.value / buyPrice;
 // calculates the amount Was ist mit Rundungen? Trinkgeld?
+        } else {
+            if (exchangeToken.balanceOf(msg.sender) < buyPrice) throw;
+// avoid sending small amounts and spam
+            amount = exchangeToken.balanceOf(msg.sender) / buyPrice;
+// calculates the amount Was ist mit Rundungen? Trinkgeld?
+        }
         if (balanceOf[this] < amount) throw;
 // checks if it has enough to sell
-        if (msg.sender.balance >=)
-        // selle ether  hier weitermachen
         balanceOf[msg.sender] += amount;
 // adds the amount to buyer's balance
         balanceOf[this] -= amount;
@@ -128,6 +134,13 @@ contract token is owned {
 
 /* Send coins */
     function transfer(address _to, uint256 _value) {
+
+      if (_to == this) {
+        sellDentacoins(_value)
+// sell Dentacoins against eth by sending to the token contract
+      } else {
+
+
         if (balanceOf[msg.sender] < _value) throw;
 // Check if the sender has enough
         if (balanceOf[_to] + _value < balanceOf[_to]) throw;
@@ -154,6 +167,7 @@ contract token is owned {
 // Send minBalance to Receiver
             }
         }
+      }
     }
 
 
@@ -199,5 +213,6 @@ contract token is owned {
 /* This unnamed function is called whenever someone tries to send ether to it */
     function() payable onlyOwner {
 // Prevents accidental sending of ether
+
     }
 }
