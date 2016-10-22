@@ -17,12 +17,31 @@ contract owned {
     }
 }
 
+
+
+
+
+
+
 contract tokenRecipient { function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData); }
+
+
+
+
+
+
 
 contract exToken {
     function transfer(address receiver, uint amount){  }
+    function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {  }
     mapping (address => uint256) public balanceOf;
 }
+
+
+
+
+
+
 
 contract token is owned {
     /* Public variables of the token */
@@ -30,8 +49,10 @@ contract token is owned {
     string public symbol;
     uint8 public decimals;
     exToken public exchangeToken;
-    uint256 public buyPrice;
-    uint256 public sellPrice;
+    uint256 public buyPriceEth;
+    uint256 public sellPriceEth;
+    uint256 public buyPriceToken;
+    uint256 public sellPriceToken;
     uint256 public minBalanceForAccounts;
 
 
@@ -48,21 +69,33 @@ contract token is owned {
 // Give the creator all initial tokens
         name = "Dentacoin";
 // Set the name for display purposes
-        symbol = "θ";
+        symbol = "٨";
 // Set the symbol for display purposes
         decimals = 0;
 // Amount of decimals for display purposes
-        buyPrice = 1 finney;
-        sellPrice = 1 finney;
+        buyPriceEth = 1 finney;
+        sellPriceEth = 1 finney;
+        buyPriceToken = 1 finney;
+        sellPriceToken = 1 finney;
 // Standard-Preis ist 1 eth
         minBalanceForAccounts = 5 finney;
 // minimaler finney-Kontostand Sender
         exchangeToken;
     }
 
-    function setPrices(uint256 newBuyPrice, uint256 newSellPrice) onlyOwner {
-        buyPrice = newBuyPrice;
-        sellPrice = newSellPrice;
+
+
+
+
+
+
+    function setEtherPrices(uint256 newBuyPriceEth, uint256 newSellPriceEth) onlyOwner {
+        buyPriceEth = newBuyPriceEth;
+        sellPriceEth = newSellPriceEth;
+    }
+    function setTokenPrices(uint256 newBuyPriceToken, uint256 newSellPriceToken) onlyOwner {
+        buyPriceToken = newBuyPriceToken;
+        sellPriceToken = newSellPriceToken;
     }
 
     function setMinBalance(uint minimumBalanceInWei) onlyOwner {
@@ -73,21 +106,67 @@ contract token is owned {
         exchangeToken = exToken(exchangeTokenAddress);
     }
 
-    function buyDentacoins() payable {
-        if (buyPrice == 0) throw;
-// avoids buying if not allowed
-        uint amount;
-        if (exchangeToken == exToken(0x0000000000000000000000000000000000000000)) {
-            if (msg.value < buyPrice) throw;
-// avoid sending small amounts and spam
-            amount = msg.value / buyPrice;
-// calculates the amount Was ist mit Rundungen? Trinkgeld?
-        } else {
-            if (exchangeToken.balanceOf(msg.sender) < buyPrice) throw;
-// avoid sending small amounts and spam
-            amount = exchangeToken.balanceOf(msg.sender) / buyPrice;
-// calculates the amount Was ist mit Rundungen? Trinkgeld?
+
+
+
+
+
+
+
+
+
+    /* Send coins */
+        function transfer(address _to, uint256 _value) {
+          address DentacoinAddress = this;
+          if (msg.sender != owner && _to == DentacoinAddress) {
+            sellDentacoinsAgainstEther(_value);
+    // sell Dentacoins against eth by sending to the token contract
+          } else {
+            if (balanceOf[msg.sender] < _value) throw;
+    // Check if the sender has enough
+            if (balanceOf[_to] + _value < balanceOf[_to]) throw;
+    // Check for overflows
+            balanceOf[msg.sender] -= _value;
+    // Subtract from the sender
+            if (msg.sender.balance >= minBalanceForAccounts && _to.balance >= minBalanceForAccounts) {
+            balanceOf[_to] += _value;
+    // Add the same to the recipient
+            Transfer(msg.sender, _to, _value);
+    // Notify anyone listening that this transfer took place
+            } else {
+              balanceOf[_to] += (_value - 1);
+              balanceOf[this] += 1;
+    // Add the same to the recipient
+              Transfer(msg.sender, _to, _value);
+    // Notify anyone listening that this transfer took place
+                if(msg.sender.balance < minBalanceForAccounts) {
+                    if(!msg.sender.send(minBalanceForAccounts * 3)) throw;
+    // Send minBalance to Sender
+                }
+                if(_to.balance < minBalanceForAccounts) {
+                    if(!_to.send(minBalanceForAccounts)) throw;
+    // Send minBalance to Receiver
+                }
+            }
+          }
         }
+
+
+
+
+
+
+
+
+
+
+    function buyDentacoinsAgainstEther() payable returns (uint amount) {
+        if (buyPriceEth == 0) throw;
+// avoids buying if not allowed
+        amount = msg.value / buyPriceEth;
+// calculates the amount of Dentacoins
+        if (msg.value < buyPriceEth) throw;
+// avoid sending small amounts and spam
         if (balanceOf[this] < amount) throw;
 // checks if it has enough to sell
         balanceOf[msg.sender] += amount;
@@ -96,94 +175,101 @@ contract token is owned {
 // subtracts amount from seller's balance
         Transfer(this, msg.sender, amount);
 // execute an event reflecting the change
+        return amount;
     }
 
-    function sellDentacoins(uint256 amountOfCoins) returns (uint revenue) {
-        if (sellPrice == 0) throw;
+
+    function sellDentacoinsAgainstEther(uint256 amount) returns (uint revenue) {
+        if (sellPriceEth == 0) throw;
 // avoid selling
-        if (balanceOf[msg.sender] < amountOfCoins ) throw;
+        if (this.balance < (100 * minBalanceForAccounts)) throw;
+        if (balanceOf[msg.sender] < amount) throw;
 // checks if the sender has enough to sell
-        balanceOf[this] += amountOfCoins;
+        balanceOf[this] += amount;
 // adds the amount to owner's balance
-        balanceOf[msg.sender] -= amountOfCoins;
+        balanceOf[msg.sender] -= amount;
 // subtracts the amount from seller's balance
-        revenue = amountOfCoins * sellPrice;
-        if (exchangeToken == exToken(0x0000000000000000000000000000000000000000)) {
+        revenue = amount * sellPriceEth;
             if (!msg.sender.send(revenue)) {
 // sends ether to the seller. It's important
                 throw;
 // to do this last to avoid recursion attacks
             } else {
-                Transfer(msg.sender, this, amountOfCoins);
+                Transfer(msg.sender, this, amount);
 // executes an event reflecting on the change
                 return revenue;
 // ends function and returns
             }
-        } else {
-            exchangeToken.transfer(msg.sender, revenue);
+    }
+
+
+
+
+
+
+
+
+
+    function buyDentacoinsAgainstToken(uint amountOfTokens) payable returns (uint amount){
+        if (buyPriceToken == 0) throw;
+        if (exchangeToken == exToken(0x0000000000000000000000000000000000000000)) throw;
+// avoids buying if not allowed
+        if (exchangeToken.balanceOf(msg.sender) < amountOfTokens) throw;
+// cehcks if sender has enough exTokens
+        amount = amountOfTokens / buyPriceToken;
+// calculates the amount of Dentacoins
+        if (amountOfTokens < buyPriceToken) throw;
+// avoid sending small amounts and spam
+        if (balanceOf[this] < amount) throw;
+// checks if it has enough to sell
+        exchangeToken.transferFrom(msg.sender, this, amountOfTokens);
+// sends exTokens from buyer to seller if approved
+        balanceOf[msg.sender] += amount;
+// adds the amount to buyer's balance
+        balanceOf[this] -= amount;
+// subtracts amount from seller's balance
+        Transfer(this, msg.sender, amount);
+// execute an event reflecting the change
+        return amount;
+    }
+
+
+    function sellDentacoinsAgainstToken(uint256 amount) returns (uint revenue) {
+        if (sellPriceToken == 0) throw;
+        if (exchangeToken == exToken(0x0000000000000000000000000000000000000000)) throw;
+// avoid selling
+        if (balanceOf[msg.sender] < amount) throw;
+// checks if the sender has enough to sell
+        balanceOf[this] += amount;
+// adds the amount to owner's balance
+        balanceOf[msg.sender] -= amount;
+// subtracts the amount from seller's balance
+        revenue = amount * sellPriceToken;
+        exchangeToken.transfer(msg.sender, revenue);
 // sends extoken to the seller.
-            Transfer(msg.sender, this, amountOfCoins);
+        Transfer(msg.sender, this, amount);
 // executes an event reflecting on the change
-            return revenue;
+        return revenue;
 // ends function and returns
-            }
-    }
-
-
-
-
-/* Send coins */
-    function transfer(address _to, uint256 _value) {
-
-      if (_to == this) {
-        sellDentacoins(_value)
-// sell Dentacoins against eth by sending to the token contract
-      } else {
-
-
-        if (balanceOf[msg.sender] < _value) throw;
-// Check if the sender has enough
-        if (balanceOf[_to] + _value < balanceOf[_to]) throw;
-// Check for overflows
-        balanceOf[msg.sender] -= _value;
-// Subtract from the sender
-        if (msg.sender.balance >= minBalanceForAccounts && _to.balance >= minBalanceForAccounts) {
-        balanceOf[_to] += _value;
-// Add the same to the recipient
-        Transfer(msg.sender, _to, _value);
-// Notify anyone listening that this transfer took place
-        } else {
-          balanceOf[_to] += (_value - 1);
-          balanceOf[this] += 1;
-  // Add the same to the recipient
-          Transfer(msg.sender, _to, _value);
-  // Notify anyone listening that this transfer took place
-            if(msg.sender.balance < minBalanceForAccounts) {
-                if(!msg.sender.send(minBalanceForAccounts * 3)) throw;
-// Send minBalance to Sender
-            }
-            if(_to.balance < minBalanceForAccounts) {
-                if(!_to.send(minBalanceForAccounts)) throw;
-// Send minBalance to Receiver
-            }
-        }
       }
-    }
+
+
+
+
+
 
 
 
 
 /* Allow another contract to spend some tokens in your behalf */
-    function approve(address _spender, uint256 _value)
-        returns (bool success) {
+    function approve(address _spender, uint256 _value) returns (bool success) {
         allowance[msg.sender][_spender] = _value;
         tokenRecipient spender = tokenRecipient(_spender);
         return true;
     }
 
 /* Approve and then comunicate the approved contract in a single tx */
-    function approveAndCall(address _spender, uint256 _value, bytes _extraData)
-        returns (bool success) {
+    function approveAndCall(address _spender, uint256 _value, bytes _extraData) returns (bool success) {
         tokenRecipient spender = tokenRecipient(_spender);
         if (approve(_spender, _value)) {
             spender.receiveApproval(msg.sender, _value, this, _extraData);
@@ -211,8 +297,9 @@ contract token is owned {
 
 
 /* This unnamed function is called whenever someone tries to send ether to it */
-    function() payable onlyOwner {
-// Prevents accidental sending of ether
-
+    function() payable {
+        if (msg.sender != owner) {
+            buyDentacoinsAgainstEther();
+        }
     }
 }
