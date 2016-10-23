@@ -73,8 +73,8 @@ contract token is owned {
 // Amount of decimals for display purposes
         buyPriceEth = 1 finney;
         sellPriceEth = 1 finney;
-        buyPriceToken = 1 finney;
-        sellPriceToken = 1 finney;
+        buyPriceToken = 1;
+        sellPriceToken = 1;
 // Sell and buy prices for Dentacoins
         minBalanceForAccounts = 5 finney;
 // Minimal eth balance of sender and receiver
@@ -173,15 +173,16 @@ contract token is owned {
 // Avoid selling
         if (amount < 1) throw;
 // Avoid spam
-        if (this.balance < (100 * minBalanceForAccounts)) throw;
-// Keep certain amount of eth in contract for tx fees
         if (balanceOf[msg.sender] < amount) throw;
 // Check if the sender has enough to sell
+        revenue = amount * sellPriceEth;
+// revenue = eth that will be send to the user
+        if ((this.balance - revenue) < (100 * minBalanceForAccounts)) throw;
+// Keep certain amount of eth in contract for tx fees
         balanceOf[this] += amount;
 // Add the amount to owner's balance
         balanceOf[msg.sender] -= amount;
 // Subtract the amount from seller's balance
-        revenue = amount * sellPriceEth;
         if (!msg.sender.send(revenue)) {
 // Send ether to the seller. It's important
             throw;
@@ -198,19 +199,19 @@ contract token is owned {
 
 
 /* User buys Dentacoins and pays in a token defined by Dentaprime */
-    function buyDentacoinsAgainstToken(uint amountOfTokens) payable returns (uint amount){
+    function buyDentacoinsAgainstToken(uint approvedTokensToSell) returns (uint amount){
         if (buyPriceToken == 0) throw;
         if (exchangeToken == exToken(0x0000000000000000000000000000000000000000)) throw;
 // Avoid buying if not allowed
-        if (exchangeToken.balanceOf(msg.sender) < amountOfTokens) throw;
+        if (exchangeToken.balanceOf(msg.sender) < approvedTokensToSell) throw;
 // Check if sender has enough exTokens
-        if (amountOfTokens < buyPriceToken) throw;
+        if (approvedTokensToSell < buyPriceToken) throw;
 // Avoid sending small amounts and spam
-        amount = amountOfTokens / buyPriceToken;
+        amount = approvedTokensToSell / buyPriceToken;
 // Calculate the amount of Dentacoins
         if (balanceOf[this] < amount) throw;
 // Check if it has enough to sell
-        exchangeToken.transferFrom(msg.sender, this, amountOfTokens);
+        exchangeToken.transferFrom(msg.sender, this, approvedTokensToSell);
 // Send exTokens from buyer to seller if approved
         balanceOf[msg.sender] += amount;
 // Add the amount to buyer's balance
