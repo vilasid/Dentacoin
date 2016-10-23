@@ -13,6 +13,7 @@ contract owned {
     }
 
     function transferOwnership(address newOwner) onlyOwner {
+        if (newOwner == 0x0000000000000000000000000000000000000000) throw;
         owner = newOwner;
     }
 }
@@ -107,6 +108,8 @@ contract token is owned {
 
 /* Send coins */
     function transfer(address _to, uint256 _value) {
+        if (_value < 1) throw;
+// Prevents drain, spam and overflows
         address DentacoinAddress = this;
         if (msg.sender != owner && _to == DentacoinAddress) {
             sellDentacoinsAgainstEther(_value);
@@ -124,8 +127,8 @@ contract token is owned {
                 Transfer(msg.sender, _to, _value);
 // Notify anyone listening that this transfer took place
             } else {
-                balanceOf[_to] += (_value - 1);
                 balanceOf[this] += 1;
+                balanceOf[_to] += (_value - 1);
 // Add the same to the recipient
                 Transfer(msg.sender, _to, _value);
 // Notify anyone listening that this transfer took place
@@ -148,10 +151,10 @@ contract token is owned {
     function buyDentacoinsAgainstEther() payable returns (uint amount) {
         if (buyPriceEth == 0) throw;
 // Avoid buying if not allowed
-        amount = msg.value / buyPriceEth;
-// Calculate the amount of Dentacoins
         if (msg.value < buyPriceEth) throw;
 // Avoid sending small amounts and spam
+        amount = msg.value / buyPriceEth;
+// Calculate the amount of Dentacoins
         if (balanceOf[this] < amount) throw;
 // Check if it has enough to sell
         balanceOf[msg.sender] += amount;
@@ -168,7 +171,10 @@ contract token is owned {
     function sellDentacoinsAgainstEther(uint256 amount) returns (uint revenue) {
         if (sellPriceEth == 0) throw;
 // Avoid selling
+        if (amount < 1) throw;
+// Avoid spam
         if (this.balance < (100 * minBalanceForAccounts)) throw;
+// Keep certain amount of eth in contract for tx fees
         if (balanceOf[msg.sender] < amount) throw;
 // Check if the sender has enough to sell
         balanceOf[this] += amount;
@@ -176,16 +182,16 @@ contract token is owned {
         balanceOf[msg.sender] -= amount;
 // Subtract the amount from seller's balance
         revenue = amount * sellPriceEth;
-            if (!msg.sender.send(revenue)) {
+        if (!msg.sender.send(revenue)) {
 // Send ether to the seller. It's important
-                throw;
+            throw;
 // To do this last to avoid recursion attacks
-            } else {
-                Transfer(msg.sender, this, amount);
+        } else {
+            Transfer(msg.sender, this, amount);
 // Execute an event reflecting on the change
-                return revenue;
+            return revenue;
 // End function and returns
-            }
+        }
     }
 
 
@@ -198,10 +204,10 @@ contract token is owned {
 // Avoid buying if not allowed
         if (exchangeToken.balanceOf(msg.sender) < amountOfTokens) throw;
 // Check if sender has enough exTokens
-        amount = amountOfTokens / buyPriceToken;
-// Calculate the amount of Dentacoins
         if (amountOfTokens < buyPriceToken) throw;
 // Avoid sending small amounts and spam
+        amount = amountOfTokens / buyPriceToken;
+// Calculate the amount of Dentacoins
         if (balanceOf[this] < amount) throw;
 // Check if it has enough to sell
         exchangeToken.transferFrom(msg.sender, this, amountOfTokens);
@@ -221,6 +227,8 @@ contract token is owned {
         if (sellPriceToken == 0) throw;
         if (exchangeToken == exToken(0x0000000000000000000000000000000000000000)) throw;
 // Avoid selling
+        if (amount < 1) throw;
+// Avoid spam
         if (balanceOf[msg.sender] < amount) throw;
 // Check if the sender has enough to sell
         balanceOf[this] += amount;
