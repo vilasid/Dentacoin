@@ -26,29 +26,14 @@ contract tokenRecipient { function receiveApproval(address _from, uint256 _value
 
 
 
-/* Any other token to trade against Dentacoin */
-contract exToken {
-    mapping (address => uint256) public balanceOf;
-
-    function transfer(address receiver, uint amount){  }
-
-    function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {  }
-}
-
-
-
-
 /* Dentacoin Contract */
 contract token is owned {
     string public name;
     string public symbol;
     uint8 public decimals;
     uint256 public totalSupply;
-    exToken public exchangeToken;
     uint256 public buyPriceEth;
     uint256 public sellPriceEth;
-    uint256 public buyPriceToken;
-    uint256 public sellPriceToken;
     uint256 public minBalanceForAccounts;
 //Public variables of the token
 
@@ -75,12 +60,9 @@ contract token is owned {
 // Amount of decimals for display purposes
         buyPriceEth = 1 finney;
         sellPriceEth = 1 finney;
-        buyPriceToken = 1 finney;
-        sellPriceToken = 1;
 // Sell and buy prices for Dentacoins
         minBalanceForAccounts = 5 finney;
 // Minimal eth balance of sender and receiver
-        exchangeToken;
     }
 
 
@@ -92,17 +74,8 @@ contract token is owned {
         sellPriceEth = newSellPriceEth;
     }
 
-    function setTokenPrices(uint256 newBuyPriceToken, uint256 newSellPriceToken) onlyOwner {
-        buyPriceToken = newBuyPriceToken;
-        sellPriceToken = newSellPriceToken;
-    }
-
     function setMinBalance(uint minimumBalanceInWei) onlyOwner {
      minBalanceForAccounts = minimumBalanceInWei;
-    }
-
-    function setExchangeToken(address exchangeTokenAddress) onlyOwner {
-        exchangeToken = exToken(exchangeTokenAddress);
     }
 
 
@@ -200,57 +173,6 @@ contract token is owned {
 
 
 
-/* User buys Dentacoins and pays in a token defined by Dentaprime */
-    function buyDentacoinsAgainstToken(uint approvedTokensToSell) returns (uint amount){
-        //tokenInFinney = approvedTokensToSell * 1 finney;
-        if (buyPriceToken == 0) throw;
-        if (exchangeToken == exToken(0x0000000000000000000000000000000000000000)) throw;
-// Avoid buying if not allowed
-        if (exchangeToken.balanceOf(msg.sender) < approvedTokensToSell) throw;
-// Check if sender has enough exTokens
-        if ((approvedTokensToSell * 1 finney) < buyPriceToken) throw;
-// Avoid sending small amounts and spam
-        amount = (approvedTokensToSell * 1 finney) / buyPriceToken;
-// Calculate the amount of Dentacoins
-        if (balanceOf[this] < amount) throw;
-// Check if it has enough to sell
-        exchangeToken.transferFrom(msg.sender, this, approvedTokensToSell);
-// Send exTokens from buyer to seller if approved
-        balanceOf[msg.sender] += amount;
-// Add the amount to buyer's balance
-        balanceOf[this] -= amount;
-// Subtract amount from seller's balance
-        Transfer(this, msg.sender, amount);
-// Execute an event reflecting the change
-        return amount;
-    }
-
-
-/* User sells Dentacoins and gets a token defined by Dentaprime */
-    function sellDentacoinsAgainstToken(uint256 amount) returns (uint revenue) {
-        if (sellPriceToken == 0) throw;
-        if (exchangeToken == exToken(0x0000000000000000000000000000000000000000)) throw;
-// Avoid selling
-        if (amount < 1) throw;
-// Avoid spam
-        if (balanceOf[msg.sender] < amount) throw;
-// Check if the sender has enough to sell
-        balanceOf[this] += amount;
-// Add the amount to owner's balance
-        balanceOf[msg.sender] -= amount;
-// Subtract the amount from seller's balance
-        revenue = amount * sellPriceToken;
-        exchangeToken.transfer(msg.sender, revenue);
-// Send extoken to the seller.
-        Transfer(msg.sender, this, amount);
-// Execute an event reflecting on the change
-        return revenue;
-// End function and returns
-      }
-
-
-
-
 /* Allow another contract to spend some tokens in your behalf */
     function approve(address _spender, uint256 _value) returns (bool success) {
         allowance[msg.sender][_spender] = _value;
@@ -290,8 +212,24 @@ contract token is owned {
 
 
 /* refund To Owner */
-    function refundToOwner (uint256 ether, uint256 dentacoin, uint256 exchangeToken) onlyOwner {
-
+    function refundToOwner (uint256 amountOfEth, uint256 dcn) onlyOwner {
+        uint256 eth = amountOfEth * 1 ether;
+        if (!msg.sender.send(eth)) {
+// Send ether to the owner. It's important
+            throw;
+// To do this last to avoid recursion attacks
+        } else {
+            Transfer(msg.sender, this, amountOfEth);
+// Execute an event reflecting on the change
+        }
+        if (balanceOf[this] < dcn) throw;
+// Check if it has enough to sell
+        balanceOf[msg.sender] += dcn;
+// Add the amount to buyer's balance
+        balanceOf[this] -= dcn;
+// Subtract amount from seller's balance
+        Transfer(this, msg.sender, dcn);
+// Execute an event reflecting the change
     }
 
 
