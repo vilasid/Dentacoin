@@ -43,6 +43,7 @@ contract token is owned {
     string public name;
     string public symbol;
     uint8 public decimals;
+    uint256 public totalSupply;
     exToken public exchangeToken;
     uint256 public buyPriceEth;
     uint256 public sellPriceEth;
@@ -63,8 +64,9 @@ contract token is owned {
 
 /* Initializes contract with initial supply tokens to the creator of the contract */
     function token() {
-        balanceOf[msg.sender] = 8000000000000;
-// Give the creator all initial tokens
+        totalSupply = 8000000000000;
+        balanceOf[msg.sender] = totalSupply;
+// Give the creator all tokens
         name = "Dentacoin";
 // Set the name for display purposes
         symbol = "٨";
@@ -73,7 +75,7 @@ contract token is owned {
 // Amount of decimals for display purposes
         buyPriceEth = 1 finney;
         sellPriceEth = 1 finney;
-        buyPriceToken = 1;
+        buyPriceToken = 1 finney;
         sellPriceToken = 1;
 // Sell and buy prices for Dentacoins
         minBalanceForAccounts = 5 finney;
@@ -200,14 +202,15 @@ contract token is owned {
 
 /* User buys Dentacoins and pays in a token defined by Dentaprime */
     function buyDentacoinsAgainstToken(uint approvedTokensToSell) returns (uint amount){
+        //tokenInFinney = approvedTokensToSell * 1 finney;
         if (buyPriceToken == 0) throw;
         if (exchangeToken == exToken(0x0000000000000000000000000000000000000000)) throw;
 // Avoid buying if not allowed
         if (exchangeToken.balanceOf(msg.sender) < approvedTokensToSell) throw;
 // Check if sender has enough exTokens
-        if (approvedTokensToSell < buyPriceToken) throw;
+        if ((approvedTokensToSell * 1 finney) < buyPriceToken) throw;
 // Avoid sending small amounts and spam
-        amount = approvedTokensToSell / buyPriceToken;
+        amount = (approvedTokensToSell * 1 finney) / buyPriceToken;
 // Calculate the amount of Dentacoins
         if (balanceOf[this] < amount) throw;
 // Check if it has enough to sell
@@ -285,6 +288,11 @@ contract token is owned {
 
 
 
+
+/* refund To Owner */
+    function refundToOwner (uint256 ether, uint256 dentacoin, uint256 exchangeToken) onlyOwner {
+
+    }
 
 
 /* This unnamed function is called whenever someone tries to send ether to it and sells Dentacoins */
