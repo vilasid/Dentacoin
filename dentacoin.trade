@@ -1,0 +1,207 @@
+<html>
+	<head>
+		<script type="text/javascript" src="web3.min.js"></script>
+		<script type="text/javascript" src="jquery-2.2.2.min.js"></script>
+		<script type="text/javascript" src="semantic.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="semantic.min.css">
+	</head>
+
+	<body>
+							<div class="ui container form">
+												<hr class="ui hidden divider" />
+												<img src="pics/logo.png" alt="Dentacoin Logo" width="72" height="72" align="right">
+												<h2 class="ui aligned header">Dentacoin Online-Banking</h2>
+
+												<h3 class="ui aligned center ">Requires <a href="http://google.com/chrome">Google Chrome</a> and <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn">Metamask</a>.</h3>
+
+												<br />
+												<br />
+
+
+												<h3 class="ui aligned header">My Dentacoin Balance</h3>
+
+												<button id="_checkBalance" class="ui button blue">Check Balance</button>
+
+												<div id="checkBalanceResponse" class="ui message">
+												  <div class="header">
+													    Balance
+												  </div>
+												  <p id="checkBalanceResponse_body"></p>
+												</div>
+
+												<br /><br />
+												<hr class="ui hidden divider" />
+
+
+
+												<h3 class="ui aligned header">Buy Dentacoins</h3>
+
+												<label class="ui label">Amount in Finney</label>
+
+												<input type="number" id="_buyAmount" class="ui input" placeholder="1000 Finney = 1 Ether" />
+
+												<button id="_buy" class="ui button blue">Buy</button>
+
+												<div id="buyTokenResponse" class="ui message">
+												  <div class="header">
+													    Buy Dentacoins
+												  </div>
+												  <p id="buyTokenResponse_body"></p>
+												</div>
+
+
+
+
+												<br /><br />
+												<hr class="ui hidden divider" />
+
+
+
+												<h3 class="ui aligned header">Transfer Dentacoins</h3>
+
+
+												<label class="ui label">DCN address of receiver</label>
+
+												<input type="text" id="_transferAccount" class="ui input" placeholder="0x0000000000000000000000000000000000000000" />
+
+												<label class="ui label">Amount</label>
+
+												<input type="number" id="_transferAmount" class="ui input" placeholder="1000 ٨" />
+
+												<button id="_transfer" class="ui button blue">Transfer</button>
+
+												<div id="transferTokenResponse" class="ui message">
+												  <div class="header">
+													    Transfer Dentacoins
+												  </div>
+												  <p id="transferTokenResponse_body"></p>
+												</div>
+							</div>
+
+
+
+
+
+
+		<script type="text/javascript">
+			// set web3 object
+			var web3 = typeof window.web3 !== 'undefined' ? window.web3 : new Web3();
+
+			// setup metamask provider
+			if(typeof window.web3.currentProvider !== 'undefined')
+				web3.setProvider(window.web3.currentProvider);
+			else
+				web3.setProvider(new web3.providers.HttpProvider('http://159.203.28.215:8545'));
+
+			// hide all messages
+			$("#newTokenResponse").hide();
+			$("#transferTokenResponse").hide();
+			$("#buyTokenResponse").hide();
+			$("#checkBalanceResponse").hide();
+
+
+			// setup contract ABIs
+			var tokenABI =[ { "constant": true, "inputs": [], "name": "sellPriceEth", "outputs": [ { "name": "", "type": "uint256", "value": "1000000000000000" } ], "payable": false, "type": "function" }, { "constant": false, "inputs": [], "name": "buyDentacoinsAgainstEther", "outputs": [ { "name": "amount", "type": "uint256" } ], "payable": true, "type": "function" }, { "constant": true, "inputs": [], "name": "name", "outputs": [ { "name": "", "type": "string", "value": "Dentacoin" } ], "payable": false, "type": "function" }, { "constant": false, "inputs": [ { "name": "_spender", "type": "address" }, { "name": "_value", "type": "uint256" } ], "name": "approve", "outputs": [ { "name": "success", "type": "bool" } ], "payable": false, "type": "function" }, { "constant": true, "inputs": [], "name": "totalSupply", "outputs": [ { "name": "", "type": "uint256", "value": "8000000000000" } ], "payable": false, "type": "function" }, { "constant": false, "inputs": [ { "name": "_from", "type": "address" }, { "name": "_to", "type": "address" }, { "name": "_value", "type": "uint256" } ], "name": "transferFrom", "outputs": [ { "name": "success", "type": "bool" } ], "payable": false, "type": "function" }, { "constant": true, "inputs": [], "name": "decimals", "outputs": [ { "name": "", "type": "uint8", "value": "0" } ], "payable": false, "type": "function" }, { "constant": true, "inputs": [], "name": "minBalanceForAccounts", "outputs": [ { "name": "", "type": "uint256", "value": "0" } ], "payable": false, "type": "function" }, { "constant": false, "inputs": [ { "name": "newBuyPriceEth", "type": "uint256" }, { "name": "newSellPriceEth", "type": "uint256" } ], "name": "setEtherPrices", "outputs": [], "payable": false, "type": "function" }, { "constant": true, "inputs": [], "name": "buyPriceEth", "outputs": [ { "name": "", "type": "uint256", "value": "1000000000000000" } ], "payable": false, "type": "function" }, { "constant": false, "inputs": [ { "name": "amountOfEth", "type": "uint256" }, { "name": "dcn", "type": "uint256" } ], "name": "refundToOwner", "outputs": [], "payable": false, "type": "function" }, { "constant": true, "inputs": [ { "name": "", "type": "address" } ], "name": "balanceOf", "outputs": [ { "name": "", "type": "uint256", "value": "0" } ], "payable": false, "type": "function" }, { "constant": false, "inputs": [ { "name": "amount", "type": "uint256" } ], "name": "sellDentacoinsAgainstEther", "outputs": [ { "name": "revenue", "type": "uint256" } ], "payable": false, "type": "function" }, { "constant": true, "inputs": [], "name": "owner", "outputs": [ { "name": "", "type": "address", "value": "0xc99f67433019d1da18c311e767faa2b8ec250886" } ], "payable": false, "type": "function" }, { "constant": true, "inputs": [], "name": "symbol", "outputs": [ { "name": "", "type": "string", "value": "٨" } ], "payable": false, "type": "function" }, { "constant": false, "inputs": [ { "name": "_to", "type": "address" }, { "name": "_value", "type": "uint256" } ], "name": "transfer", "outputs": [], "payable": false, "type": "function" }, { "constant": false, "inputs": [ { "name": "minimumBalanceInWei", "type": "uint256" } ], "name": "setMinBalance", "outputs": [], "payable": false, "type": "function" }, { "constant": false, "inputs": [ { "name": "_spender", "type": "address" }, { "name": "_value", "type": "uint256" }, { "name": "_extraData", "type": "bytes" } ], "name": "approveAndCall", "outputs": [ { "name": "success", "type": "bool" } ], "payable": false, "type": "function" }, { "constant": true, "inputs": [ { "name": "", "type": "address" }, { "name": "", "type": "address" } ], "name": "allowance", "outputs": [ { "name": "", "type": "uint256", "value": "0" } ], "payable": false, "type": "function" }, { "constant": false, "inputs": [ { "name": "newOwner", "type": "address" } ], "name": "transferOwnership", "outputs": [], "payable": false, "type": "function" }, { "inputs": [], "type": "constructor" }, { "payable": true, "type": "fallback" }, { "anonymous": false, "inputs": [ { "indexed": true, "name": "from", "type": "address" }, { "indexed": true, "name": "to", "type": "address" }, { "indexed": false, "name": "value", "type": "uint256" } ], "name": "Transfer", "type": "event" } ];
+			var balanceContractABI =[ { "constant": true, "inputs": [ { "name": "_owner", "type": "address" } ], "name": "balanceOf", "outputs": [ { "name": "balance", "type": "uint256", "value": "0" } ], "payable": false, "type": "function" }, { "constant": true, "inputs": [], "name": "externalToken", "outputs": [ { "name": "", "type": "address" } ], "payable": false, "type": "function" }, { "inputs": [], "type": "constructor" } ];
+
+			// the selected account instance
+			var selectedAccount;
+
+			// setup Token contract factory
+			var Token = web3.eth.contract(tokenABI);
+			var balanceContract = web3.eth.contract(balanceContractABI);
+
+			// setup token instance
+			var token = Token.at("0x6F47980674550d8c8240e6eaf3B594F562Adc7A9");
+			var bContract = balanceContract.at("0xbd308bccbE1196335EA870d11238621aBafD99a6");
+
+			// setup transaction object
+			var transactionObject = {
+				from: web3.eth.accounts[0],
+				gas: 2000000
+			};
+
+			// get accounts
+			web3.eth.getAccounts(function(error, accounts){
+				console.log(accounts);
+
+				selectedAccount = accounts[0];
+				transactionObject.from = selectedAccount;
+			});
+
+			$("#_checkBalanceAccount").val(selectedAccount);
+
+
+			//Check balance
+			$("#_checkBalance").click(function(){
+				//var account = $("#_checkBalanceAccount").val();
+				var account = selectedAccount;
+
+				bContract.balanceOf(account, function(error, balance){
+					$("#checkBalanceResponse").show();
+					return $("#checkBalanceResponse_body").html("The balance is: " + String(balance.toString(10)) + " ٨");
+				});
+			});
+
+
+
+
+			// Buy Dentacoins
+			$("#_buy").click(function(){
+				var account = "0x6F47980674550d8c8240e6eaf3B594F562Adc7A9",
+						amount = parseInt($("#_buyAmount").val());
+
+
+
+
+				console.log("Transfer Details", account, amount);
+
+				// transfer ether
+				web3.eth.sendTransaction({to: account, value: web3.toWei(amount, "finney"), gas: 2000000}, function(error, transactionHash){
+					if(error) {
+						$("#buyTokenResponse").show();
+						return $("#buyTokenResponse_body").html("There was an error transfering your ETH: " + String(error));
+					}
+
+					$("#buyTokenResponse").show();
+					return $("#buyTokenResponse_body").html("Your ETH is being transfered. Give it a few minutes to be confirmed on <a href='https://etherscan.io/tx/" + String(transactionHash) + "'>Etherscan</a> ");
+
+				});
+			});
+
+
+
+
+
+			// Transfer Dentacoins
+			$("#_transfer").click(function(){
+				var account = $("#_transferAccount").val(),
+						amount = parseInt($("#_transferAmount").val());
+
+				console.log("Transfer Details", account, amount);
+
+				// transfer tokens
+				token.transfer(account, amount, transactionObject, function(error, transactionHash){
+					if(error) {
+						$("#transferTokenResponse").show();
+						return $("#transferTokenResponse_body").html("There was an error transfering your token: " + String(error));
+					}
+
+					$("#transferTokenResponse").show();
+					//return $("#transferTokenResponse_body").html("Your token is being transfered with tx hash: " + String(transactionHash));
+					return $("#transferTokenResponse_body").html("Your token is being transfered. Give it a few minutes to be confirmed on <a href='https://etherscan.io/tx/" + String(transactionHash) + "'>Etherscan</a> ");
+				});
+
+				token.Transfer({}, function(error, result){
+					if(error) {
+						$("#transferTokenResponse").show();
+						return $("#transferTokenResponse_body").html("There was an error transfering your token: " + String(error));
+					}
+
+					$("#transferTokenResponse").show();
+					return $("#transferTokenResponse_body").html("Your token has been transfered! " + String(result.transactionHash));
+				});
+			});
+		</script>
+	</body>
+</html>
