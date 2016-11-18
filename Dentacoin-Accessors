@@ -1,0 +1,17 @@
+ pragma solidity ^0.4.2;
+ 
+ contract exToken {
+    mapping (address => uint256) public balanceOf;
+ }
+ 
+ contract DentacoinBalances {
+    exToken public externalToken;
+    function DentacoinBalances(){
+        externalToken = exToken(0x6F47980674550d8c8240e6eaf3B594F562Adc7A9);
+    }
+ 
+    
+    function balanceOf(address _owner) constant returns (uint256 balance) {
+        return externalToken.balanceOf(_owner);
+    }
+ }
