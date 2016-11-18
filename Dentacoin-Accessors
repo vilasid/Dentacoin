@@ -14,8 +14,8 @@
  contract DentacoinAccessors {
     exToken public externalToken;
     function DentacoinAccessors(){
-        //externalToken = exToken(0x6F47980674550d8c8240e6eaf3B594F562Adc7A9);
-        externalToken = exToken(0xFf455398b8a94bAd01B216DecC4cFa4eEDDb3705);  //testnet
+        externalToken = exToken(0x6F47980674550d8c8240e6eaf3B594F562Adc7A9);
+        //externalToken = exToken(0xFf455398b8a94bAd01B216DecC4cFa4eEDDb3705);  //testnet
     }
 
     function totalSupply() constant returns (uint256 totalSupply) {
