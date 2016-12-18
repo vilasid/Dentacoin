@@ -1,1 +1,58 @@
 pragma solidity ^0.4.2;
+
+contract owned {
+    address public owner;
+
+    function owned() {
+        owner = msg.sender;
+    }
+
+    modifier onlyOwner {
+        if (msg.sender != owner) throw;
+        _;
+    }
+
+    function transferOwnership(address newOwner) onlyOwner {
+        if (newOwner == 0x0000000000000000000000000000000000000000) throw;
+        owner = newOwner;
+    }
+}
+
+contract extoken {
+  function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {  }
+  mapping (address => uint256) public balanceOf;
+}
+
+
+
+
+/* Dentacoin Insurance Contract */
+contract insurance is owned {
+      string public holderFirstName;
+      string public holderLastName;
+      string public holderAddress;
+      uint256 public holderAge;
+      string public symbol;
+      uint8 public decimals;
+      uint256 public totalSupply;
+      uint256 public buyPriceEth;
+      uint256 public sellPriceEth;
+      uint256 public minBalanceForAccounts;
+  //Public variables of the contract
+
+  function insurance(){}
+
+  function registerPolicyHolder(string _firstName, string _lastName, string _residenceAddress, uint256 _age){
+    holderFirstName = _firstName;
+    holderLastName = _lastName;
+    holderAddress = _residenceAddress;
+    holderAge = _age;
+  }
+  
+  function getMonthlyPremiums() {
+    exchangeToken.transferFrom(msg.sender, this, amountOfTokens);
+  }
+  
+}
+
+
