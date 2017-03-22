@@ -9,13 +9,20 @@ Join us in creating a decentralised global currency based on the Ethereum blockc
 
 ## Why?
 
-We believe in a medium of pure free trade, economies with fair, permissionless access and a world without intermediaries. We want to create policies that can exist between friends or scale globally, we want to communicate securely and be uninhibited by legacy systems.   
+Dentacoin is an industrial Blockchain concept invented by Dentacoin Foundation in the Netherlands. 
 
-We want to take responsibilty for our data, the way we conduct ourselves privately and promote this way of life to a mass audience.
+Our mission is to contribute to improving dental health and equal access to high quality dental care to all people, through giving the power in the hands of the people. 
 
-We want deep insights into our own economies so we can make informed, data-driven decisions on how to make our lives better. The Ethereum blockchain, Smart Contracts, Swarm and Whisper provides us a path forward.  
+Through this game-changing concept, patients can use their experience and feedback to impact on improving the dental treatment quality while simultaneously reducing the costs. 
 
-If this interests you, **help us make Status a reality** - anyone can contribute and we need everyone at any skill level to participate.
+The Dentacoin ERC20 token is configured to be used globally by all individuals. 
+
+Dentacoin Fundation, the DCN inventor, bought 100% of Dentaprime International PLCs’ shares thus the disposition over the company will be in the hands of Dentacoin Foundation and will be connected to the blockchain. Each DCN represents and participates in the company’s shares and dividends. The DCN community will vote for important decisions of the company through an integrated voting system. 
+
+Further projects are planned:
+The health data base: In addition to the currency (DCN), the Ethereum blockchain will securely handle all private patient data. Further data will be updatable and accessible to patients. The Insurance: Following treatment, Dentaprime will offer each patient a DCN paid insurance policy for lifelong free dental procedures to prevent all the health consequences related to old-age poverty.
+
+Dentacoin will develop as both, a stable growing international currency and an attractive alternate derivate system for investors.
 
 ## How to Contribute?
 
@@ -49,24 +56,13 @@ It's all about that sex appeal, we want cryptocurrencies to be easy and fun to u
 - **Evangelism**  
 Help us spread the word! Tell a friend *right now*, infact tell **everyone** - yell from a mountain if you have to, every person counts!
 
-## Give me Binaries!
+## Let me try!
 
-Currently the fastest way to get your hands on a binary is to join our Early Access by submitting your email on our [website](https://status.im) or by [building it yourself](https://wiki.status.im/contributing/development/building-status/).
-
-// TODO GPlay, TestFlight Instructions & FDroid
+Currently the fastest way to get your hands on Dentacoin is using Metamask on PC/Mac or Status/uPort on mobile (testnet only).
 
 ## Core Contributors
-// TODO mugshots
 
-- Jarrad ([@jarradh](https://github.com/jarradh)) - Cofounder and Thought Leader.
-- Carl ([@carlbennetts](https://github.com/carlbennetts)) - Cofounder and Communications & Marketing.
-- Roman ([@rasom](https://github.com/rasom)) - Clojure and project lead.
-- Alexander ([@alwx](https://github.com/alwx)) - Clojure ninja!
-- Victor ([@farazdagi](https://github.com/farazdagi)) - Golang one-man-army.
-- Andrei ([@andmironov](https://github.com/andmironov)) - Visual design and user experience conjurer.
-
-Special thanks to [@adrian-tiberius](https://github.com/adrian-tiberius).
-Without the dedication of these fine gentleman, Status would not exist.
+- Jeremias ([@neptox](https://github.com/neptox)) - Cofounder and dev leader.
 
 ## Contact us
 
