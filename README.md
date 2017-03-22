@@ -1,5 +1,4 @@
 ![Dentacoin - Health Care Industry should be in the hands of the people](http://dentacoin.com/web/img/Banner.png "Dentacoin - Health Care Industry should be in the hands of the people")
-// TODO badges
 
 # Dentacoin - Health Care Industry should be in the hands of the people
 
@@ -71,10 +70,8 @@ Without the dedication of these fine gentleman, Status would not exist.
 
 ## Contact us
 
-Feel free to email us at [support@status.im](mailto:support@status.im) or better yet, [join our Slack](http://slack.status.im). 
-
-Got a feature request or suggestion, download Status and shake your phone, failing that search our [Github Issues](http://github.com/status-im/status-react/issues).
+Feel free to email us at [admin@dentacoin.com](mailto:admin@dentacoin.com) or better yet, [join our Slack](https://dentacoin.signup.team). 
 
 ## License
 
-Licensed under the [Mozilla Public License v2.0](https://github.com/status-im/status-react/blob/develop/LICENSE.md)
+Licensed under the [Mozilla Public License v2.0](https://github.com/neptox/Dentacoin/blob/master/LICENSE.md)
