@@ -1,4 +1,4 @@
-[![Dentacoin - Health Care Industry should be in the hands of the people](http://dentacoin.com/web/img/Banner_new.png "Scan the qr code for the Dentatcoin smart contract address and proof it i.e. on https://etherscan.io")](https://etherscan.io/token/0x08d32b0da63e2C3bcF8019c9c5d849d7a9d791e6)
+[![Dentacoin - Health Care Industry should be in the hands of the people](http://dentacoin.com/web/img/qr.jpg "Proof the Dentatcoin smart contract address on https://etherscan.io")](https://etherscan.io/token/0x08d32b0da63e2C3bcF8019c9c5d849d7a9d791e6)
 
 # Dentacoin - Health Care Industry should be in the hands of the people
 
