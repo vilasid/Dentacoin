@@ -1,11 +1,11 @@
-![Dentacoin - Health Care Industry should be in the hands of the people](http://dentacoin.com/web/img/Banner.png "Status - A Browser, Messenger, and gateway to the decentralised world of Ethereum")
+![Dentacoin - Health Care Industry should be in the hands of the people](http://dentacoin.com/web/img/Banner.png "Dentacoin - Health Care Industry should be in the hands of the people")
 // TODO badges
 
-# Status - a Mobile Ethereum Operating System
+# Dentacoin - Health Care Industry should be in the hands of the people
 
-Join us in creating a browser, messenger, and gateway to a decentralised world. Status is a free (libre) open source mobile client targeting Android & iOS built entirely on [Ethereum](https://ethereum.org/) technologies. That's right, no middle men and `go-ethereum` running directly on your device.
+Join us in creating a decentralised global currency based on the Ethereum blockchain.
 
-[![Getting started with Status](https://i.imgur.com/C0aZZEL.jpg)](https://www.youtube.com/watch?v=oDCSEmS9c3o "Getting started with Status")
+[![Getting started with Status](http://dentacoin.com/web/img/Dentacoin_what.png)](https://d11oz1xo3vrzp6.cloudfront.net/publish/2017/3/21/1edbd2db1098476f840ecdad55f29769.mp4 "Getting started with Dentacoin")
 
 
 ## Why?
