@@ -26,7 +26,7 @@ Dentacoin will develop as both, a stable growing international currency and an a
 
 ## How to Contribute?
 
-Go straight to the [blog](http://dentacoin.com/blog) or [join our Slack](https://dentacoin.signup.team/) or choose what interests you:
+Go straight to the [blog](http://dentacoin.com/blog) //TODO or [join our Slack](https://dentacoin.signup.team/) or choose what interests you:
 
 - ** Earn Dentacoins as a patient **
 As a patient of a Dentacoin partner clinic you will be rewarded for helping them with feedback surveys, writing online reviews or referring them to a friend. Earn Dentacoins by helping improve the quality of dental services worldwide! Dentacoin partner clinics.
