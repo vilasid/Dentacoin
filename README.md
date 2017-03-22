@@ -67,7 +67,7 @@ Currently the fastest way to get your hands on Dentacoin is using Metamask on PC
 
 ## Core Contributors
 
-- Jeremias ([@neptox](https://github.com/neptox)) - Cofounder and dev leader.
+- Jeremias ([@neptox](https://github.com/neptox)) - Cofounder and core developer.
 
 ## Contact us
 
