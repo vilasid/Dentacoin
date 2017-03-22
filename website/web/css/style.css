@@ -1,0 +1,581 @@
+/* ============================
+    Code by Boris Nekezov
+    boris.nekezov@gmail.com
+============================ */
+body {
+	font-family: 'Nunito', sans-serif;
+	font-size: 16px;
+}
+
+label {
+	color: #8d2f47;
+}
+
+a {
+	color: #8d2f47;
+}
+
+a:focus, a:hover {
+	color: #7d233a;
+}
+
+a,a:hover, a:active, a:focus {
+  outline: 0;
+}
+
+a,.btn {
+	-webkit-transition: all .3s ease;
+	-moz-transition: all .3s ease;
+	-ms-transition: all .3s ease;
+	-o-transition: all .3s ease;
+	transition: all .3s ease;
+}
+
+/* bootstrap overwrites*/
+audio, canvas, progress, video {
+	width: 100%;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+	color: #8d2f47;
+}
+
+.h1, h1 {
+	font-size: 48px;
+	 font-weight: 600;
+}
+
+.h2, h2 {
+	font-size: 44px;
+}
+
+.lead {
+	font-size: 19px;
+}
+
+.btn {
+	border: 0;
+	color: #fff;
+	border-radius: 0;
+}
+
+.btn-group-lg > .btn,
+.btn-lg {
+	padding: 10px 26px;
+}
+
+.btn-default {
+	color: #fff;
+	background-color: #8d2f47;
+}
+
+.btn-default:hover {
+	color: #fff;
+	background-color: #7d233a;
+}
+
+.btn-link {
+	color: #8d2f47;
+}
+
+.btn-link:focus,
+.btn-link:hover {
+	color: #7d233a;
+	text-decoration: none;
+}
+
+.navbar-default {
+	border: 0;
+	background-color: #fff;
+}
+
+.navbar-toggle {
+	margin-top: 20px;
+}
+
+.navbar-default .navbar-toggle {
+	border: 0;
+}
+
+.navbar-default .navbar-toggle:focus,
+.navbar-default .navbar-toggle:hover {
+	background-color: transparent;
+}
+
+.btn-default.focus,
+.btn-default:focus,
+.btn-default.active.focus,
+.btn-default.active:focus,
+.btn-default.active:hover, .btn-default.focus:active,
+.btn-default:active:focus, .btn-default:active:hover,
+.open > .dropdown-toggle.btn-default.focus,
+.open > .dropdown-toggle.btn-default:focus,
+.open > .dropdown-toggle.btn-default:hover,
+.btn-default.active, .btn-default:active,
+.open > .dropdown-toggle.btn-default {
+	color: #fff;
+	background-color: #8d2f47;
+}
+
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+	border: 0;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+	background-color: #8d2f47;
+}
+
+.navbar-toggle .icon-bar + .icon-bar {
+	margin-top: 8px;
+}
+
+.navbar-toggle .icon-bar {
+	width: 44px;
+	height: 4px;
+	border-radius: 4px;
+}
+
+.navbar-brand {
+	width: 50px;
+	height: 50px;
+	margin-top: 10px;
+	margin-left: 0;
+	padding: 0;
+}
+
+.navbar-default .navbar-nav > li > a:focus,
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:focus,
+.navbar-default .navbar-nav > .active > a:hover {
+	color: #8d2f47;
+	background-color: transparent;
+}
+
+.navbar-top.navbar {
+	height: 70px;
+	margin-bottom: 0;
+}
+
+.navbar-top .container > .navbar-header {
+	background-color: #fff;
+}
+
+.form-control {
+	height: 48px;
+	padding: 8px 14px;
+	box-shadow: none;
+	border: 0;
+	border-radius: 0;
+	background-color: #f8f8f8;
+	font-size: 16px;
+}
+
+
+/* classes */
+
+
+/* =main-menu*/
+#mainMenu {
+	background-color: #fff;
+}
+
+.main-menu {
+	margin-top: 10px;
+	background-color: #fff;
+}
+
+.main-menu li a {
+	font-size: 20px;
+}
+
+.about,
+.what,
+.how,
+.who,
+.contact {
+	padding-top: 100px;
+	padding-bottom: 100px;
+}
+
+.what h2,
+.howh h2,
+.who h2,
+.contact h2 {
+	margin-top: 0;
+}
+
+/* =about */
+.about h1 {
+	margin: 100px 0 100px;
+}
+
+.more-text {
+	display: block;
+}
+
+.more-text.hidden {
+	display: none;
+}
+
+
+.get-dentacoins {
+	margin-top: 50px;
+}
+
+/* =what */
+.what {
+	background-color: #f9f9f9;
+}
+
+.what .player {
+	margin: 100px 0;
+}
+
+.feature i {
+	margin-top: 20px;
+	color: #000;
+	font-size: 80px;
+}
+
+.feature h3 {
+	margin-top: 20px;
+}
+
+.feature p {
+	margin-top: 20px;
+	height: 132px;
+	overflow: hidden;
+}
+
+.feature .btn {
+	margin-top: 10px;
+}
+
+/* =how */
+.how h2 {
+	margin-bottom: 100px;
+}
+
+.steps li {
+	color: #000;
+	margin-bottom: 20px;
+}
+
+/* =who*/
+.who {
+	background-color: #f9f9f9;
+}
+
+.who h2 {
+	margin-bottom: 100px;
+}
+
+.who a {
+	display: inline-block;
+	text-align: center;
+}
+
+/* =contact*/
+.contact h2 {
+	margin-bottom: 100px;
+}
+
+.social {
+	text-align: center;
+}
+.social li {
+	display: inline-block;
+	margin: 0 20px;
+}
+
+.social li a {
+	position: relative;
+}
+
+/* tool tip*/
+.social li a .mask {
+	position: absolute;
+	display: block;
+	width: 82px;
+	height: 45px;
+	left: 0;
+	text-align: center;
+}
+
+.social li a.ml .tip {
+	width: 200px;
+	right: 58px;
+}
+
+.social li a.fb .tip {
+
+}
+
+.social li a.tw .tip {
+
+}
+
+.social li a .tip {
+	display: block;
+	position: relative;
+	top: 30px;
+	padding: 5px 10px;
+	color: #fff;
+	background-color: #8d2f47;
+	opacity: 0;
+	white-space: nowrap;
+	-webkit-transition: all .3s ease;
+	-moz-transition: all .3s ease;
+	-ms-transition: all .3s ease;
+	-o-transition: all .3s ease;
+	transition: all .3s ease;
+}
+
+.social li a .tip:after {
+	bottom: 100%;
+	left: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	border-color: rgba(141, 47, 71, 0);
+	border-bottom-color: #8d2f47;
+	border-width: 10px;
+	margin-left: -10px;
+	opacity: 0;
+	-webkit-transition: all .3s ease;
+	-moz-transition: all .3s ease;
+	-ms-transition: all .3s ease;
+	-o-transition: all .3s ease;
+	transition: all .3s ease;
+}
+
+.social li a:hover .tip {
+	top: 20px;
+	opacity: 1;
+}
+.social li a:hover .tip:after {
+	opacity: 1;
+}
+
+/* icons */
+
+.social li a i {
+	font-size: 60px;
+}
+
+.nav.social > li > a:focus,
+.nav.social > li > a:hover {
+	background-color: transparent;
+}
+
+.social li a i {
+	-webkit-transition: all .4s ease-in-out;
+	-moz-transition: all .4s ease-in-out;
+	-ms-transition: all .4s ease-in-out;
+	-o-transition: all .4s ease-in-out;
+	transition: all .4s ease-in-out;
+}
+
+.social li a:hover i {
+	-webkit-transform: scale(1.2) rotate(360deg);
+	-moz-transform: scale(1.2) rotate(360deg);
+	-ms-transform: scale(1.2) rotate(360deg);
+	-o-transform: scale(1.2) rotate(360deg);
+	transform: scale(1.2) rotate(360deg);
+}
+
+/* mail */
+.social li a i.fa-envelope-square {
+	color: #58585a;
+}
+.social li a:hover i.fa-envelope-square {
+	color: #8d2f47;
+}
+
+/* facebook*/
+.social li a i.fa-facebook-square {
+	color: #3b5998;
+}
+.social li a:hover i.fa-facebook-square {
+	color: #8d2f47;
+}
+
+/* twitter */
+.social li a .fa-twitter-square {
+	color: #00aced;
+}
+.social li a:hover .fa-twitter-square {
+	color: #8d2f47;
+}
+
+
+/* player */
+.plyr--video .plyr__controls button.tab-focus:focus,
+.plyr--video .plyr__controls button:hover,
+.plyr__play-large {
+	background-color: #8d2f47;
+}
+.plyr__progress--played, .plyr__volume--display {
+	color: #8d2f47;
+}
+
+/* =scroll-top */
+.scroll-top {
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	width: 58px;
+	height: 51px;
+	padding: 4px 14px 8px;
+	font-size: 30px;
+	opacity: 0;
+}
+.scroll-top.visible {
+	opacity: 1;
+}
+
+.antispam {
+	display:none;
+}
+
+.signature {
+	font-size: 12px;
+}
+
+@media screen and (max-width: 1199px) {
+	.lead {
+		font-size: 16px;
+	}
+
+	.steps li {
+		margin-bottom: 10px;
+	}
+}
+
+@media screen and (max-width: 991px) {
+
+	/* =what */
+	.feature {
+		margin-bottom: 40px;
+	}
+
+	.what,
+	.how,
+	.who,
+	.contact {
+		padding-top: 50px;
+		padding-bottom: 50px;
+	}
+
+	/* =who */
+	.who .push-top-md {
+		margin-top: 80px;
+	}
+
+	.player {
+		margin-top: 50px;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	/* bootstrap overwrites*/
+	.h1, h1 {
+		font-size: 26px;
+	}
+
+	.h2, h2 {
+		font-size: 30px;
+	}
+
+	.lead {
+		font-size: 17px;
+	}
+
+
+	.navbar-brand {
+		margin-left: 15px;
+	}
+
+	.navbar-collapse {
+		position: absolute;
+		right: 0;
+		left: 0;
+	}
+
+	.main-menu {
+		margin: 7.5px -15px;
+		padding-bottom: 10px;
+		background-color: #fff;
+	}
+
+	.main-menu li a {
+		font-size: 16px;
+		text-align: center;
+	}
+
+	/* =about <767 */
+	.about h1 {
+	    margin: 50px 0 50px;
+	}
+
+	/* contact */
+	.contact form {
+		padding: 0 15px;
+	}
+
+	/* =scroll-top */
+	.scroll-top {
+		bottom: 15px;
+		right: 15px;
+	}
+
+	.social li {
+		margin: 0 10px;
+	}
+
+	.social li {
+    	margin: 0 4px;
+	}
+
+	.social li .tip {
+    	font-size: 14px;
+	}
+	.social li a.ml .tip {
+	    width: 164px;
+	    right: 40px;
+	}
+
+	/* slimmer nav, smaller logo and menu toggle icon*/
+	.navbar-top.navbar {
+		height: 52px;
+	}
+
+	.navbar-brand {
+		width: 36px;
+		height: 36px;
+		margin-top: 9px;
+	}
+	.navbar-brand img {
+		width: 36px;
+		height: 36px;
+	}
+
+	.navbar-toggle {
+		margin-top: 8px;
+		margin-bottom: 0;
+	}
+
+	.navbar-toggle .icon-bar {
+	    width: 33px;
+		height: 3px;
+	}
+
+	.navbar-toggle .icon-bar + .icon-bar {
+		margin-top: 5px;
+	}
+
+}
