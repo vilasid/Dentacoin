@@ -31,6 +31,7 @@ contract owned {
 
 
 
+
 /**
  * Overflow aware uint math functions.
  */
@@ -57,4 +58,35 @@ contract SafeMath {
   function assert(bool assertion) internal {
     if (!assertion) throw;
   }
+}
+
+
+contract feedback is owned, SafeMath {
+
+/* Global variables */
+  struct Feedback {
+    uint256 timeStamp;
+
+    string receiverFirstName;
+    string receiverLastName;
+    string receiverEmail;
+    string receiverOfficeStreet;
+    string receiverOfficePostal;
+    string receiverOfficeCity;
+    string receiverOfficeCountry;
+
+    string senderAnswer;
+  }
+  mapping (uint256 => Feedback) feedbackID;
+
+  function feedback() {
+
+  }
+
+
+
+
+
+
+
 }
