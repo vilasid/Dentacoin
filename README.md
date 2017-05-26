@@ -70,98 +70,98 @@ Currently the fastest way to get your hands on Dentacoin is using Metamask on PC
 
 ## Core Contributors
 
-- PROF. DR. DIMITAR DIMITRAKIEV
-**Founder of Dentacoin Foundation**
+- **PROF. DR. DIMITAR DIMITRAKIEV**
+Founder of Dentacoin Foundation
 
 The Founder. Highly respected University lecturer. More than 27 years experience in financial markets. Devoted to science and engineering. Member of the IEEE Computational Intelligence society, EADM and Union of Automation and Informatics.
 
-- JEREMIAS GRENZEBACH
-**Co-Founder / Core Developer**
+- **JEREMIAS GRENZEBACH**
+Co-Founder / Core Developer
 
 Our Code Wizard. Early entrant into the Blockchain scene. Immersed within the peer-to-peer technology for 8 years. Contributor to Ethereum, Waves, ZCash, uPort, Status, imToken, Byteball. Strong believer in decentralization and transparency. 
 
-- PHILIPP GRENZEBACH
-**Co-Founder / Business Developer / M&A**
+- **PHILIPP GRENZEBACH**
+Co-Founder / Business Developer / M&A
 
 The Economic Brain behind Dentacoin. Studies in Law, Economics and Business Management. Adopted the tripple bottom line to Dentacoin while integrating technical sustainability. Fighter for free, decentralised markets.
 
-- VESELIN MATOV    
-**CRM & Supply Chain Manager**
+- **VESELIN MATOV**
+CRM & Supply Chain Manager
 
 Our CRM Pro. Focused on identifying technological trends and implementing them as competitive advantages. Experienced in CRM, Dental Software Implementation, Purchasing Management. Background education in Computer Systems and  Technology. Constantly exploring state-of-the-art innovations for the benefit of patients.
 
 
-- HRISTO GRADECHLIEV
-**CFO**
+- **HRISTO GRADECHLIEV**
+CFO
 
 The Finance Master. Responsible for managing the finance and accounting divisions. MBA in Law. Experienced in payment ecosystems, building analytic tools, processes and teams to manage the revenue, costs and risks inherent in the payment space. With a strong flair for successful investments.
 
-- JULIA RADEVA
-**Business Development Manager**
+- **JULIA RADEVA**
+Business Development Manager
 
 Our Business Pioneer. 11-year experience in Business Development    Management. The  driving force behind several successful  dental clinic concepts. Overseeing the applications of dental innovations  and constantly exploring the opportunities for growth in Dental Industry.
 
-- TSVETOMIR IVANOV
-**Industry 4.0 Engineer**
+- **TSVETOMIR IVANOV**
+Industry 4.0 Engineer
 
 The Future Thinker. Digital  Dentistry, CAD/CAM and 3D-printing expert. Highly focused on finding ways to    achieve significant efficiency, cost reduction and revenue gains through    digitalization and automation. Permanently researching, evaluating and    implementing high-tech dental innovations.
 
-- SERGEY USHAKOV
-**Digital Transformation Specialist**
+- **SERGEY USHAKOV**
+Digital Transformation Specialist
 
 Our Transformation Accelerator. Computer science and Blockchain enthusiast. Degree  in Robotics & Mechatronics; currently specializing in Software    Engineering. Experienced in Digital Transformations and Business Process Automation.   Highly interested in AI, IoT, VR and AR.
 
-- DR. DIMO DASKAoV
-**Dental Industry Development Catalyst**
+- **DR. DIMO DASKAoV**
+Dental Industry Development Catalyst
 
 The   Strongest Link between DCN and the Dental Industry. Leading dentist, currently managing a team of 19 dentists. Educator    in Prosthetic Dentistry. Constantly improving dental services by implementing future technologies, delivering “WOW” patient experience and simultaneously reducing the costs. Eager to be a part of the paradigm shift. 
 
-- DR. IVAN PEEV
-**Dentistry 4.0 Specialist**
+- **DR. IVAN PEEV**
+Dentistry 4.0 Specialist
 
 Our Guide to the Digital Implantology world. Dental Implant Specialist with    a significant experience in providing high-tech dental care by surgical    guides and computer-navigated implantation systems. Phantom instructor, certified    by the International Training Center for Dental Implantology (IFZI). With a Sixth  sense for cutting-edge technical solutions.
 
-- BETINA BOGDANOVA
-**Senior Legal Advisor**
+- **BETINA BOGDANOVA**
+Senior Legal Advisor
 
 The Voice of law. Supports the legal project management pillar of  Dentacoin. Experienced in advising fintech and dental companies. Solid legal background including    the Australian National University, Rijks Univesitet and Harvard Law. Previous collaborations with the WHO    and Harvard School of Public Health.
 
-- ALEXANDER KRINGS
-**Senior Marketing Manager**
+- **ALEXANDER KRINGS**
+Senior Marketing Manager
 
 Our Marketing Mastermind. Significant expertise in Healthcare Marketing.    18-years experience in growth hacking and marketing in the field of Dentistry,    Medical Tourism and Nutrition. Developed Customized Patient Journeys for    international clinics. Highly interested in CRM and Marketing Automation.
 
-- DONIKA KRAEVA
-**Strategic Communications Manager**
+- **DONIKA KRAEVA**
+Strategic Communications Manager
 
 The Communications Ambassador. Translates big and complex ideas to the target group's language.   Experienced in Online Medical Marketing. Developed Feedback Systems and Patient Loyalty Programs for  international dental clinics. Seeking ways to utilize Blockchain advantages in building a patient-driven Dental Industry.
 
-- MARIAM NISHANIAN
-**Community & Public Relations**
+- **MARIAM NISHANIAN**
+Community & Public Relations
 
 Our Public Voice. International   background in PR, social media management, communications consulting and UX  design. Interested in Cryptocurrency Investing. Skilled entrepreneur with experience in start-up development. In constant pursuit of new challenges.
 
-- AYREDIN STOYANOV
-**Graphic Designer**
+- **AYREDIN STOYANOV**
+Graphic Designer
 
 Our Visual Power. Education in Multimedia Design and   Software Systems and Technologies. Experienced in using visuals to communicate  ideas that inspire, inform and captivate.  Passionate about video  creation and photography.
 
-- BORIS NEKEZOV
-**Front-End Developer**
+- **BORIS NEKEZOV**
+Front-End Developer
 
 The HTML  Ninja. Combines the art of design with the art of programming, thus ensuring    the technical feasibility of UI/UX designs. Certified and vastly experienced   in Javascript, JQuery, CSS, HTML, as well as in Quality Assurance Testing. Involved in front-end development for Blockchain start-ups.
 
-- DR. DESISLAVA GERCHEVA
-**Advisor**
+- **DR. DESISLAVA GERCHEVA**
+Advisor
 
-- DR. NADEZHDA PANCHEVA
-**Advisor**
+- **DR. NADEZHDA PANCHEVA**
+Advisor
 
-- DR. ELENA TUMA
-**Advisor**
+- **DR. ELENA TUMA**
+Advisor
 
-- DR. DEYAN NOVAKOVSKI
-**Advisor**
+- **DR. DEYAN NOVAKOVSKI**
+Advisor
 
 ## Contact us
 
