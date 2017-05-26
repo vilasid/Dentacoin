@@ -6,28 +6,26 @@ Join us in creating a decentralised global currency based on the Ethereum blockc
 
 [![Getting started with Dentacoin](http://dentacoin.com/web/img/Dentacoin_what.png)](https://d11oz1xo3vrzp6.cloudfront.net/publish/2017/3/21/1edbd2db1098476f840ecdad55f29769.mp4 "Getting started with Dentacoin")
 
+Dentacoin is an industrial blockchain concept invented by Dentacoin Foundation in the Netherlands. The Dentacoin ERC20 token is configured to be used globally by all individuals.
+
 ## The starting point
 
-Nowadays, the more health problems people have, the more they must pay.
-Patients pay not only for their own ignorance on dental care concerns (dental hygiene routine and nutrition) but also for the dentists’ inability to treat them properly and to keep their teeth healthy in the long term.
+Nowadays, each service industry, aiming at long-term success, is driven by the customers’ feedback. Healthcare Industry is no exception. No regulatory authority, no central institution, no powerful organization or individual could control the industry better than the patient community. People trust people. Always have, always will. Therefore, there is nothing more valuable to the industry players than a constant, trustworthy feedback from the patients. But what if this community doesn’t exist yet? This is where Dentacoin steps in.
 
-## The solution
+## The concept
 
-Dentacoin terminates this fundamentally insufficient and unfair approach by developing a revolutionary blockchain-based insurance concept where responsibility for one’s health is shared and interests are aligned between dentists and patients.
+Through creating and implementing the first Blockchain-based platform for trusted dental treatment reviews, Dentacoin will allow patients to raise their voice. Simultaneously, dentists will have access to up-to-date, extremely valuable market research data and qualified patient feedback - the most powerful tool to improve service quality and to establish a loyal patient base. Through a self-executing Smart Contract, the Dentacoin review platform will assure optimal autonomy, trust, speed and safety. No manipulations are possible.
 
-Patients are guaranteed to receive lifelong free dental services by paying extremely low monthly fees to their dentists in Dentacoin (DCN). On the other hand, dentists will be motivated to always keep their patients in a perfect dental health condition by providing them with proper care and advice. Subsequently, if the patient’s health condition is not maintained to standard by the dentist, the costs that arise thereafter will have to be covered by the dentist him/herself.
+Dentacoin’s one-of-a-kind feedback platform will be supported by various other value-creating solutions devoted to the same purpose - to improve dental care quality worldwide. These include: a dental insurance model, a healthcare database, an aftercare mobile app, an educational website.
 
-This need for an improvement in the quality of dental care will be supported by the Dentacoin’s cloud-based Feedback System where patients can give their honest and valuable feedback to each dentist.
+## The currency
 
-In addition to that, an educational website that focuses on expanding patients’ knowledge about dental care issues and an aftercare app that assists patients in steps to be followed post-treatment will be provided. Thus, patients will become more aware of how to properly take care of their dental health which will inevitably contribute to dentists’ efforts to keep their patients’ teeth in a flawless condition.
+As the DCN distribution model is aimed at value creation for the dental industry worldwide, each patient activity which generates value for the dental industry will be rewarded with Dentacoin. DCNs could later be used for paying dental treatments. Dentists, on the other hands, could consider DCN as a financial investment or they could remunerate employees for their extraordinary performance in the workplace. They could also pay suppliers in Dentacoin with no extra time, no middlemen and no more high international transaction costs. This direct connection between producers and dentists will then allow dentists to provide lower prices to patients.
+The currency cycle is closed. Moreover, the establishment of Dentacoin as an industrial currency will put all market players - suppliers, dentists and patients - in a “win-win-win” situation.
 
-Moreover, the ETH blockchain will securely handle all patients’ health records. Data will be highly protected, updatable and accessible only by patients. When permission is granted, dentists will be able to access and assess their patients’ medical history records.
+## The value behind
 
-## The distribution
-
-The DCN distribution model is aimed at value creation for the dental industry worldwide. Each activity which generates value for the dental industry will be rewarded with Dentacoins (learn more). DCNs could be used to pay for unaffordable dental treatments. Due to the DCN being limited in amount and thus – inflation-protected, the value is expected to increase in time, giving the involved parties further benefits.
-
-To further increase its relevance as a store of value, each Dentacoin is legally bound to one share of the Dentacoin foundation and all its commodities. This truly revolutionary concept not only backs Dentacoins directly with real world assets but allows all coin holders to vote for important decisions regarding the foundation. In the long term, Dentacoin holders participate in the growing value of the global healthcare industry.
+To further increase its relevance as a store of value, each Dentacoin is legally bound to one share of the Dentacoin foundation and all its material and immaterial assets. This truly revolutionary concept not only backs Dentacoins directly with real world assets but allows all coin holders to vote for important decisions regarding the foundation. Due to the DCN being limited in amount and thus – inflation-protected, the value is expected to increase in time, giving the involved parties further benefits.
 
 ## How to Contribute?
 
