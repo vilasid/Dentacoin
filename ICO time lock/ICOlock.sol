@@ -10,33 +10,31 @@ contract exToken {
 // Timelock
 contract DentacoinTimeLock {
 
-	address public owner;
-	//uint lockTime = 1 years;
-  uint public lockTime = 1 minutes;
-	uint public startTime;
+  address public owner;
+  uint lockTime = 1 years;
+  uint public startTime;
   uint256 lockedAmount;
   exToken public tokenAddress;
 
-	modifier onlyBy(address _account){
-		if (msg.sender != _account)
-			throw;
-		_;
-	}
+  modifier onlyBy(address _account){
+    if (msg.sender != _account)
+    throw;
+    _;
+  }
 
-	function () payable {}
+  function () payable {}
 
-	function DentacoinTimeLock() {
+  function DentacoinTimeLock() {
 
-		owner = msg.sender;
-		startTime = now;
+    owner = msg.sender;
+    startTime = now;
     tokenAddress = exToken(0x08d32b0da63e2C3bcF8019c9c5d849d7a9d791e6);
-	}
+  }
 
-	function withdraw() onlyBy(owner) {
+  function withdraw() onlyBy(owner) {
     lockedAmount = tokenAddress.balanceOf(this);
-		if ((startTime + lockTime) < now) {
-			tokenAddress.transfer(owner, lockedAmount);
-		} else { throw; }
-	}
-
+    if ((startTime + lockTime) < now) {
+      tokenAddress.transfer(owner, lockedAmount);
+    } else { throw; }
+  }
 }
