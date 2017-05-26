@@ -37,5 +37,4 @@ contract DentacoinTimeLock {
       tokenAddress.transfer(owner, lockedAmount);
     } else { throw; }
   }
-
 }
