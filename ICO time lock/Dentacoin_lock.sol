@@ -1,5 +1,5 @@
 /*
-Dentacoin Foundation TimeLock Contract 2033
+Dentacoin Foundation TimeLock Contract 2028
 
 6 088 888 888 888 DCN will be locked in total
 Every year a certain amount will be released:
@@ -13,12 +13,12 @@ Every year a certain amount will be released:
 01/01/2025 = 547999999999   //9% Contract Address:
 01/01/2026 = 487111111111   //8% Contract Address:
 01/01/2027 = 487111111111   //8% Contract Address:
-01/01/2028 = 365333333333   //6% Contract Address:
-01/01/2029 = 304444444444   //5% Contract Address:
-01/01/2030 = 121777777777   //2% Contract Address:
-01/01/2031 = 121777777777   //2% Contract Address:
-01/01/2032 = 121777777777   //2% Contract Address:
-01/01/2033 = 121777777777   //2% Contract Address:
+01/01/2028 = 365333333333   //6% Contract Address: 0xA407A4f537e0Ee4936e3Fc32DB64914d4d5d3f43
+01/01/2029 = 304444444444   //5% Contract Address: 0x3572DE393113A3b4faCDB12deE3e92733058EF67
+01/01/2030 = 121777777777   //2% Contract Address: 0x22877c076B09A65dbB865b4a29e5436231634Fc4
+01/01/2031 = 121777777777   //2% Contract Address: 0xE3345eb610C2F3B0d9884A4784B0e980eA420dA3
+01/01/2032 = 121777777777   //2% Contract Address: 0xbBaf33931dbCFcE91337986f5B953e555DFA0526
+01/01/2033 = 121777777777   //2% Contract Address: 0x864F9244aF3aBeB595c8d825861E3767FE3849DC
 01/01/2034 = 121777777777   //2% Contract Address: 0xb8e6Eae57A926b393C3d040CF3F4f9f663c6C487
 01/01/2035 = 121777777777   //2% Contract Address: 0x0e5a15e153Bd89C113A6e8fb3d14A99004C9CD94
 01/01/2036 = 121777777777   //2% Contract Address: 0x0d4346f96B7512222448bAD36AC01709634f76B0
@@ -44,9 +44,9 @@ contract exToken {
 // Timelock
 contract DentacoinTimeLock {
 
-  uint constant public year = 2034;
+  uint constant public year = 2028;
   address public owner;
-  uint public lockTime = 16 years + 197 days;
+  uint public lockTime = 10 years + 197 days;
   uint public startTime;
   uint256 lockedAmount;
   exToken public tokenAddress;
