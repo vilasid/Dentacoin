@@ -1,0 +1,71 @@
+pragma solidity ^0.4.11;
+
+//Dentacoin token import
+contract exToken {
+  function transfer(address, uint256) returns (bool) {  }
+  function balanceOf(address) constant returns (uint256) {  }
+}
+
+
+// Timelock
+contract DentacoinTimeLock {
+
+  // amount to withdraw each year
+  uint256 jan2018 = 100;   //10%
+  uint256 jan2019 = 500;   //50%
+
+  //lockTime for each withdraw
+  uint256 lockTime18 = 5 minutes;
+  uint256 lockTime19 = 10 minutes;
+  uint256 lockTime20 = 15 minutes;
+
+
+  address public owner;
+  uint public startTime;
+  uint256 lockedAmount;
+  uint public yearCount = 2018;
+  exToken public tokenAddress;
+
+  modifier onlyBy(address _account){
+    if (msg.sender != _account)
+    throw;
+    _;
+  }
+
+  function () payable {}
+
+  function DentacoinTimeLock() {
+
+    owner = msg.sender;
+    startTime = now;
+    tokenAddress = exToken(0x571280B600bBc3e2484F8AC80303F033b762048f);
+  }
+/*
+  function withdraw2018() onlyBy(owner) {
+    if (yearCount != 2018) { throw; }
+    if ((startTime + lockTime18) < now) {
+      tokenAddress.transfer(owner, jan2018);
+      yearCount += 1;
+    } else { throw; }
+  }
+  function withdraw2019() onlyBy(owner) {
+    if (yearCount != 2019) { throw; }
+    if ((startTime + lockTime19) < now) {
+      tokenAddress.transfer(owner, jan2019);
+      yearCount += 1;
+    } else { throw; }
+  }
+  function withdraw2020() onlyBy(owner) {
+    if (yearCount != 2020) { throw; }
+    if ((startTime + lockTime20) < now) {
+      tokenAddress.transfer(owner, tokenAddress.balanceOf(this));
+      yearCount += 1;
+    } else { throw; }
+  }
+
+
+
+*/
+
+
+}
