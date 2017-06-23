@@ -1,18 +1,18 @@
 /*
-Dentacoin Foundation TimeLock Contract 2028
+Dentacoin Foundation TimeLock Contract 2018
 
 6 088 888 888 888 DCN will be locked in total
 Every year a certain amount will be released:
-01/01/2018 = 121777777777   //2% Contract Address:
-01/01/2019 = 182666666666   //3% Contract Address:
-01/01/2020 = 243555555555   //4% Contract Address:
-01/01/2021 = 304444444444   //5% Contract Address:
-01/01/2022 = 365333333333   //6% Contract Address:
-01/01/2023 = 487111111111   //8% Contract Address:
-01/01/2024 = 608888888888   //10% Contract Address:
-01/01/2025 = 547999999999   //9% Contract Address:
-01/01/2026 = 487111111111   //8% Contract Address:
-01/01/2027 = 487111111111   //8% Contract Address:
+01/01/2018 = 121777777777   //2% Contract Address: 0x3668F174859271c88537d633a2Cac59de26B0641
+01/01/2019 = 182666666666   //3% Contract Address: 0xf20fC45f6e6204C3C0a97da219D714937CA7321D
+01/01/2020 = 243555555555   //4% Contract Address: 0x1b6F112B2C6fbe28Cf9394B64f493E0ffeb5c020
+01/01/2021 = 304444444444   //5% Contract Address: 0x3d666A7932De1F34121F768fd1Ed27386E84A422
+01/01/2022 = 365333333333   //6% Contract Address: 0x572f457882102FfeaaC4121338Ced3E94A006Cdc
+01/01/2023 = 487111111111   //8% Contract Address: 0x2FD80316c6271CbeF643742A3CA8265cF6ab4480
+01/01/2024 = 608888888888   //10% Contract Address: 0x5fd371718415DaB653D42cc65105AF88dB0205de
+01/01/2025 = 547999999999   //9% Contract Address: 0xf1EAB24B40C0D040ccfD1d3BbB3419003074E3D9
+01/01/2026 = 487111111111   //8% Contract Address: 0xEa63C813253E1d30b74A1f46E76a67D499B6d4C8
+01/01/2027 = 487111111111   //8% Contract Address: 0x2a1bb55f021d40d98f937665b42e69f4be7cc8f9
 01/01/2028 = 365333333333   //6% Contract Address: 0xA407A4f537e0Ee4936e3Fc32DB64914d4d5d3f43
 01/01/2029 = 304444444444   //5% Contract Address: 0x3572DE393113A3b4faCDB12deE3e92733058EF67
 01/01/2030 = 121777777777   //2% Contract Address: 0x22877c076B09A65dbB865b4a29e5436231634Fc4
@@ -44,9 +44,9 @@ contract exToken {
 // Timelock
 contract DentacoinTimeLock {
 
-  uint constant public year = 2028;
+  uint constant public year = 2018;
   address public owner;
-  uint public lockTime = 10 years + 197 days;
+  uint public lockTime = 192 days;
   uint public startTime;
   uint256 lockedAmount;
   exToken public tokenAddress;
