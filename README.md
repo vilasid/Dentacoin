@@ -1,10 +1,10 @@
-[![Dentacoin - Health Care Industry should be in the hands of the people](http://dentacoin.com/web/img/qr.jpg "Proof the Dentatcoin smart contract address on https://etherscan.io")](https://etherscan.io/token/0x08d32b0da63e2C3bcF8019c9c5d849d7a9d791e6)
+[![Dentacoin - Health Care Industry should be in the hands of the people](https://dentacoin.com/web/img/qr.jpg "Proof the Dentatcoin smart contract address on https://etherscan.io")](https://etherscan.io/token/0x08d32b0da63e2C3bcF8019c9c5d849d7a9d791e6)
 
 # Dentacoin - Health Care Industry should be in the hands of the people
 
 Join us in creating a decentralised global currency based on the Ethereum blockchain.
 
-[![Getting started with Dentacoin](http://dentacoin.com/web/img/Dentacoin_what.png)](https://d11oz1xo3vrzp6.cloudfront.net/publish/2017/3/21/1edbd2db1098476f840ecdad55f29769.mp4 "Getting started with Dentacoin")
+[![Getting started with Dentacoin](https://dentacoin.com/web/img/Dentacoin_what.png)](https://d11oz1xo3vrzp6.cloudfront.net/publish/2017/3/21/1edbd2db1098476f840ecdad55f29769.mp4 "Getting started with Dentacoin")
 
 Dentacoin is an industrial blockchain concept invented by Dentacoin Foundation in the Netherlands. The Dentacoin ERC20 token is configured to be used globally by all individuals.
 
@@ -29,7 +29,7 @@ To further increase its relevance as a store of value, each Dentacoin is legally
 
 ## How to Contribute?
 
-Go straight to the [blog](http://dentacoin.com/blog) //TODO or [join our Slack](https://dentacoin.signup.team/) or choose what interests you:
+Go straight to the [blog](https://dentacoin.com/blog) //TODO or [join our Slack](https://join.slack.com/dentacoin/shared_invite/MTkwNTQxODk5MTM5LTE0OTYyNDgwNDAtYTBhMzRiMzE3YQ) or choose what interests you:
 
 - **Earn Dentacoins as a patient**
 As a patient of a Dentacoin partner clinic you will be rewarded for helping them with feedback surveys, writing online reviews or referring them to a friend. Earn Dentacoins by helping improve the quality of dental services worldwide! Dentacoin partner clinics.
@@ -47,10 +47,10 @@ Developers are the heart of software and to keep Dentacoin beating we need all t
 Metcalfe's law states that the value of a network is proportional to the square of the number of connected users of the system - without community Dentacoin is meaningless. We're looking to create a positive, fun environment to explore new ideas, experiment and grow the Dentacoin community. Building a community takes alot of work but the people you'll meet and long lasting relationships you form will be well worth it.
 
 - **Blog Writing**  
-Content is King, keeping our blog up to date and informing the community of news helps keep everyone on the same page. [Jump on our Slack](https://dentacoin.signup.team/) and discuss with us how you can contribute.
+Content is King, keeping our blog up to date and informing the community of news helps keep everyone on the same page. [Jump on our Slack](https://join.slack.com/dentacoin/shared_invite/MTkwNTQxODk5MTM5LTE0OTYyNDgwNDAtYTBhMzRiMzE3YQ) and discuss with us how you can contribute.
 
 - **Marketing**  
-In this day and age attention is limited, we need all the help we can get to find people who are interested in Dentacoin, whether that is paid user aquisition, public relations or hype building, [Jump on our Slack](https://dentacoin.signup.team/) to see how you can spread the word.
+In this day and age attention is limited, we need all the help we can get to find people who are interested in Dentacoin, whether that is paid user aquisition, public relations or hype building, [Jump on our Slack](https://join.slack.com/dentacoin/shared_invite/MTkwNTQxODk5MTM5LTE0OTYyNDgwNDAtYTBhMzRiMzE3YQ) to see how you can spread the word.
 
 - **Testers**  
 It's bug hunting season! Dentacoin is currently in Alpha and there are sure to be a bunch of education, download Metamask, uPort or Status.im for testing dentacoin.com. Every bug you find brings Dentacoin closer to stable, usable software for everyone to enjoy!
